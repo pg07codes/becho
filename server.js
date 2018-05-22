@@ -32,6 +32,11 @@ app.engine("hbs",hbs.express4({
     layoutsDir: path.join(__dirname, 'views/layouts')
 }))
 
+//home route
+app.get("/",(r,s)=>{
+    s.render("home",{title:"ghar"})
+})
+
 
 //server starts listening
 app.listen(8888, () =>
