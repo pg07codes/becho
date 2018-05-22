@@ -37,6 +37,7 @@ app.get("/",(r,s)=>{
     s.render("home",{title:"ghar"})
 })
 
+app.use("/auth",require('./routes/authroutes'))
 
 //server starts listening
 app.listen(8888, () =>
