@@ -63,14 +63,24 @@ const product=db.define("product",{
     pcategory:{
         allowNull:false,
         type:dt.STRING
-    }
+    },
+    pimage:{
+        allowNull:false,
+        type:dt.STRING
+    },
+    pabout:{
+        allowNull:false,
+        type:dt.STRING
+    },
 })
 
 user.hasMany(product)
 product.belongsTo(user)
 
 
-db.sync().then(()=>console.log("db is synced"))
+db.sync({
+    //alter:true
+}).then(()=>console.log("db is synced"))
 
 
 module.exports={db,user,product}

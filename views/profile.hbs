@@ -1,6 +1,40 @@
-<form action="/profile" enctype="multipart/form-data" method="post">
-    <label for="photo">Select Photo </label>
-    <input type="image" id="photo" name="photo">
-    <input type="text" name="something">
-    <input type="submit">
+<form action="/product" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name"  name="name" placeholder="Product Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="price">Expected Price</label>
+                <input type="number" name="price" class="form-control" id="price" placeholder="Expected price">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="abt_product">About Product</label>
+                <input type="text" name="abt_product" class="form-control" id="abt_product" placeholder="About Product">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="photo">Select Photo </label>
+                <input type="file" id="photo" name="photo">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="location">Locality</label>
+                <input type="text" name="something" value="abcsddfsdfsflkdsjfk" >
+            </div>
+        </div>
+        <input type="submit">
+    </div>
 </form>
