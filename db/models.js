@@ -28,7 +28,20 @@ const user=db.define("user",{
     password:{
         allowNull:false,
         type:dt.STRING
+    },
+    location:{
+        allowNull:false,
+        type:dt.STRING
+    },
+    city:{
+        allowNull:false,
+        type:dt.STRING
+    },
+    phn:{
+        allowNull:false,
+        type:dt.STRING(12)
     }
+
 })
 
 //products table here
@@ -57,7 +70,9 @@ user.hasMany(product)
 product.belongsTo(user)
 
 
-db.sync().then(()=>console.log("db is synced"))
+db.sync({
+        alter: true
+    }).then(()=>console.log("db is synced"))
 
 
 module.exports={db,user}
