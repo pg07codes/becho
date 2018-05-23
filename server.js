@@ -38,7 +38,7 @@ app.get("/",(r,s)=>{
 })
 
 app.use("/auth",require('./routes/authroutes'))
-
+app.use("/searchProduct",require('./routes/searchProduct'))
 //server starts listening
 app.listen(8888, () =>
     console.log("up at http://localhost:8888")
