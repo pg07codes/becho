@@ -73,4 +73,4 @@ product.belongsTo(user)
 db.sync().then(()=>console.log("db is synced"))
 
 
-module.exports={db,user}
+module.exports={db,user,product}
