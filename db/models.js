@@ -8,6 +8,8 @@ const db=new Sequelize(dbconfig.NAME,dbconfig.USER,dbconfig.PASSWORD,{
 })
 
 //define models here
+
+//user table here
 const user=db.define("user",{
     id:{
         autoIncrement:true,
@@ -28,6 +30,31 @@ const user=db.define("user",{
         type:dt.STRING
     }
 })
+
+//products table here
+const product=db.define("product",{
+    pid:{
+        autoIncrement:true,
+        primaryKey:true,
+        type:dt.INTEGER
+    },
+    pname:{
+        allowNull:false,
+        type:dt.STRING
+    },
+    pprice:{
+        type:dt.INTEGER,
+        allowNull:false,
+
+    },
+    pcategory:{
+        allowNull:false,
+        type:dt.STRING
+    }
+})
+
+user.hasMany(product)
+product.belongsTo(user)
 
 
 db.sync().then(()=>console.log("db is synced"))
