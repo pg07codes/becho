@@ -31,17 +31,15 @@ const checkFileType=function(file,cb){
     }
 }
 */
-router.get('/',(r,s)=>{
-    if(!r.user)
-    {
-        s.redirect('./auth/signin')
-    }
-    else
-    {
-        s.render('profile',{title:'profile'})
 
-    }
+router.get('/',(r,s)=>{
+    if(r.isAuthenticated())
+        s.render('profile',{title:'profile'})
+    else
+        s.redirect('./auth/signin')
 })
+
+
 router.post('/', upload.single('photo'), (req, res) => {
     const filetypes=/jpeg|jpg|gif|png/
     const extname=filetypes.test(path.extname(req.file.originalname))           //checking the extension of the uploaded file

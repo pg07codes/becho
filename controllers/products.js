@@ -1,4 +1,5 @@
 const product=require('../db/models').product
+
 module.exports={
     insertProduct:()=>{
 
