@@ -70,9 +70,7 @@ user.hasMany(product)
 product.belongsTo(user)
 
 
-db.sync({
-        alter: true
-    }).then(()=>console.log("db is synced"))
+db.sync().then(()=>console.log("db is synced"))
 
 
 module.exports={db,user}
