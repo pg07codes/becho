@@ -1,6 +1,6 @@
 let router=require("express").Router()
 let passport=require('../passport')
-let insertuser=require("../controllers/insertuser")
+let insertuser=require("../controllers/insertuser").insertuser
 
 router.get("/signup",(r,s)=>{
     s.render("signup")
