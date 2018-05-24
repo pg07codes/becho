@@ -1,0 +1,71 @@
+<form action="/product" enctype="multipart/form-data" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name"  name="name" placeholder="Product Name">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="price">Expected Price</label>
+                <input type="number" name="price" class="form-control" id="price" placeholder="Expected price">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="abt_product">About Product</label>
+                <input type="text" name="abt_product" class="form-control" id="abt_product" placeholder="About Product">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="user_name">User Name</label>
+                <input type="text" class="form-control" id="user_name"  name="user_name" placeholder="User Name" value="{{{user.name}}}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="price">Location</label>
+                <input type="text" name="location" class="form-control" id="location" placeholder="Location" value="{{{user.location}}}">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="phn">Phone Number</label>
+                <input type="number" name="phn" class="form-control" id="phn" placeholder="Phone Number" value="{{{user.phn}}}">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="photo">Select Photo </label>
+                <input type="file" id="photo" name="photo">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="location">Category</label>
+                <select name="something">
+                    <option value="">Automobile</option>
+                    <option value="">Furniture</option>
+                    <option value="">Books</option>
+                    <option value="">Electronics</option>
+                    <option value="">Property</option>
+                    <option value="">Pets</option>
+                    <option value="">Fashion</option>
+                </select>
+            </div>
+        </div>
+        <input type="submit">
+    </div>
+</form>
