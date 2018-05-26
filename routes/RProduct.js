@@ -12,6 +12,7 @@ router.get('/',(r,s)=>{
     }
     else
     {
+
         ctrl.searchProduct(r)
             .then((data)=>{
                 s.send(data)})
