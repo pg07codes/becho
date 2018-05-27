@@ -3,14 +3,14 @@ let passport=require('../passport')
 let insertuser=require("../controllers/insertuser").insertuser
 
 router.get("/signup",(r,s)=>{
-    s.render("signup")
+    s.render("signup",{r:r})
 })
 router.post("/signup",(r,s)=>{
     insertuser(r,s)
 })
 
 router.get("/signin",(r,s)=>{
-    s.render("signin")
+    s.render("signin",{r:r})
 })
 
 router.post("/signin",passport.authenticate('local', {

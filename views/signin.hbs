@@ -1,11 +1,11 @@
-
+{{>navbar}}
 <div class="container">
     <form method="post" action="/auth/signin">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" autofocus>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
             </div>
@@ -21,5 +21,6 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <a href="/auth/signup"><input  class="btn btn-secondary" type="button" value="New? Sign up for free here!"></a>
 
 </div>

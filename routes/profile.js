@@ -8,10 +8,10 @@ const upload = multer({dest: 'uploads/'})
 router.get('/',(r,s)=>{
     if(r.isAuthenticated())
     {
-        user={}
+        let user={}
         user.name=r.user.name
         user.id=r.user.id
-        s.render('profile',{user,title:"Profile"})
+        s.render('profile',{user,title:"Profile",r:r})
     }
     else
         s.redirect('./auth/signin')

@@ -1,1 +1,15 @@
-{{>handlebars}}
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <form class="form-inline" action="/searchProduct" method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search By item">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <a href="/sell"><input type="button" class="btn btn-danger" value="Post a Free Ad"></a>
+    {{#if r.isAuthenticated}}
+        <a href="/auth/signout"><input type="button" class="btn btn-danger" value="Logout"></a>
+    {{else}}
+        <a href="/auth/signin"><input type="button" class="btn btn-secondary" value="Signin"></a>
+        <a href="/auth/signup"><input type="button" class="btn btn-primary" value="Signup"></a>
+    {{/if}}
+</nav>
+
+

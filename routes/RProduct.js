@@ -73,4 +73,4 @@ router.post('/', upload.single('photo'), (req, res) => {
         }
     }
 })
-exports=module.exports=router
+module.exports=router // no need to bind exports to module exports unless u are using exports object-- OK sachin sir...

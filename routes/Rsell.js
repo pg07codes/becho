@@ -1,15 +1,15 @@
 const router=require('express').Router()
 router.get('/',(r,s)=>{
-    if(r.user)
+    if(r.isAuthenticated())
     {   let user={}
         user.name=r.user.name           //if user is authentiated then user form will hva filled details
         user.id=r.user.id
         user.phn=r.user.phn
         user.location=r.user.location
-        s.render('product',{user})
+        s.render('product',{user,r:r})
     }
     else{
-        s.render('Product')             //else no user detail will be there
+        s.redirect('/auth/signin')             //else you have to sign in first
     }
 })
 exports=module.exports=router
