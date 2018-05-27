@@ -9,7 +9,7 @@ router.get('/',(r,s)=>{
         s.render('product',{user,r:r})
     }
     else{
-        s.redirect('/auth/signin')             //else you have to sign in first
+        s.redirect('/auth/signin?sell=true')             //else you have to sign in first
     }
 })
 exports=module.exports=router

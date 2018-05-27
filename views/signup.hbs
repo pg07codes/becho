@@ -1,4 +1,7 @@
 {{>navbar}}
+<div id="error" class="row">
+
+</div>
 <div class="container">
     <form method="post" action="/auth/signup">
         <div class="row">
@@ -55,3 +58,11 @@
     </form>
 
 </div>
+
+<script>
+    if(document.URL==="http://localhost:8888/auth/signup?eup=true")
+    {
+        $("#error").append(`<div class="alert alert-danger  col-md-4" role="alert">
+    Passwords do not match. Please try again.</div>`)
+    }
+</script>

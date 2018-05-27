@@ -15,7 +15,7 @@ router.get("/signin",(r,s)=>{
 
 router.post("/signin",passport.authenticate('local', {
     successRedirect: `/auth/profile`,
-    failureRedirect: '/?ein=true'
+    failureRedirect: '/auth/signin?ein=true'
 }))
 router.get("/signout",(r,s)=>{
     r.user=null

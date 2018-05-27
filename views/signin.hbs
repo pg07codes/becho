@@ -1,4 +1,7 @@
 {{>navbar}}
+<div id="error" class="row">
+
+</div>
 <div class="container">
     <form method="post" action="/auth/signin">
         <div class="row">
@@ -24,3 +27,10 @@
     <a href="/auth/signup"><input  class="btn btn-secondary" type="button" value="New? Sign up for free here!"></a>
 
 </div>
+<script>
+    if(document.URL==="http://localhost:8888/auth/signin?ein=true")
+    {
+        $("#error").append(`<div class="alert alert-danger col-md-4" role="alert">
+    Username or password is incorrect. Please try again.</div>`)
+    }
+</script>
