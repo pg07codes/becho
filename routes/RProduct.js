@@ -25,7 +25,7 @@ router.get('/',(r,s)=>{
 
 })
 router.get('/search',(r,s)=>{
-    r.send("hi")
+    s.send("hi")
 })
 
 router.post('/search',(r,s)=>{
