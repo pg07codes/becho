@@ -35,7 +35,7 @@ app.engine("hbs",hbs.express4({
 
 //home route
 app.get("/",(r,s)=>{
-    s.render("home",{title:"ghar"})
+    s.render("home",{title:"ghar",r:r})
 })
 app.use("/sell",require('./routes/Rsell'))
 app.use("/auth",require('./routes/authroutes'))

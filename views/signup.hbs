@@ -1,11 +1,14 @@
+{{>navbar}}
+<div id="error" class="row">
 
+</div>
 <div class="container">
     <form method="post" action="/auth/signup">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Name">
+                    <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Name" autofocus>
                 </div>
             </div>
             <div class="col-md-4">
@@ -55,3 +58,11 @@
     </form>
 
 </div>
+
+<script>
+    if(document.URL==="http://localhost:8888/auth/signup?eup=true")
+    {
+        $("#error").append(`<div class="alert alert-danger  col-md-4" role="alert">
+    Passwords do not match. Please try again.</div>`)
+    }
+</script>

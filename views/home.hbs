@@ -1,33 +1,23 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
-    <form class="form-inline" action="./product/search" method="post">
 
-        <input class="form-control mr-sm-2" type="search"  name="location" placeholder="Location" value="All India   ">
-        <input class="form-control mr-sm-2" type="search" name="category"placeholder="Search By item">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <a href="/sell"><input type="button" class="btn btn-danger" value="Post a Free Ad"></a>
-    <a href="/auth/signin"><input type="button" class="btn btn-secondary" value="Signin"></a>
-    <a href="/auth/signup"><input type="button" class="btn btn-primary" value="Signup"></a>
-</nav>
+{{>navbar}}
 <div class="container-fluid " >
     {{#each data as |item|}}
-    <a>
-        <div class="jumbotron mr-lg-2 py-1">
-            <div class="row">
-                <div class="col-3 px-0">
-                    <img height="200" width="200" src='/upload/{{item.pimage}}'>
-                </div>
-                <div class="col-6 px-0">
+        <a>
+            <div class="jumbotron mr-lg-2 py-1">
+                <div class="row">
+                    <div class="col-3 px-0">
+                        <img height="200" width="200" src='/upload/{{item.pimage}}'>
+                    </div>
+                    <div class="col-6 px-0">
 
-                    <p>{{{item.pname}}}</p>
-                </div>
-                <div class="col">
+                        <p>{{{item.pname}}}</p>
+                    </div>
+                    <div class="col">
 
+                    </div>
                 </div>
-            </div>
                 <p>{{{item.price}}}</p>
-        </div>
-    </a>
+            </div>
+        </a>
     {{/each}}
 </div>
-

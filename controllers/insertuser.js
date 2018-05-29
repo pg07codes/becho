@@ -15,7 +15,7 @@ module.exports={
             })
         }
         else{
-            s.redirect("/auth/signup")
+            s.redirect("/auth/signup?eup=true")
         }
     }
 }
