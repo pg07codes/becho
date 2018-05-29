@@ -23,7 +23,22 @@ router.get('/',(r,s)=>{
     }
 
 })
+router.get('/search',(r,s)=>{
+    r.send("hi")
+})
 
+router.post('/search',(r,s)=>{
+
+    console.log("r body is"+r.body.category)
+    ctrl.searchProduct(r.body)
+        .then((data)=>{
+            s.render("home",{data})
+        })
+        .catch((err)=>{
+            s.status(404).json({err:"sorry no product find"})
+
+        })
+})
 router.post('/', upload.single('photo'), (req, res) => {
     if(!req.user)
     {
@@ -33,9 +48,13 @@ router.post('/', upload.single('photo'), (req, res) => {
     {
         let unlink=0
         const filetypes=/jpeg|jpg|gif|png/
+
+        console.log("mimetype is "+(req.file.mimetype))
         const extname=filetypes.test(path.extname(req.file.originalname))           //checking the extension of the uploaded file
         const mimetype=filetypes.test(req.file.mimetype)
-        if(mimetype && extname)
+        console.log(extname)
+        console.log(mimetype)
+        if(mimetype )
         {
 
             fs.readFile(req.file.path, (err, data) => {

@@ -21,10 +21,22 @@ module.exports={
             })*/
     },
     searchProduct:(requery)=>{
-        return product.findAll({
-            where:{
-                pcategory:requery.category
-            }
-        })
+        if(requery.location==='India'||requery.location==='INDIA')
+        {
+
+            return product.findAll({
+                where:{
+                    pcategory:requery.category
+                }
+            })
+        }
+        else{
+
+            return product.findAll({
+                where:{
+                    pcategory:requery.category,
+                }
+            })
+        }
     }
 }
