@@ -18,7 +18,7 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label for="abt_product">About Product</label>
-                <input type="text" name="abt_product" class="form-control" id="abt_product" placeholder="About Product">
+                <textarea type="" name="abt_product" class="form-control" id="abt_product" placeholder="About Product"></textarea>
             </div>
         </div>
     </div>
@@ -46,17 +46,16 @@
     </div>
 
     <div class="row">
-
+        <!--<div class="col-md-4">-->
+            <!--<div class="form-group">-->
+                <!--<label for="photo">Select photo</label>-->
+                <!--<input type="file" id="photo" name="photo">-->
+            <!--</div>-->
+        <!--</div>-->
         <div class="col-md-4">
             <div class="form-group">
-                <label for="photo">Select Photo </label>
-                <input type="file" id="photo" name="photo">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label for="location">Category</label>
-                <select name="something">
+                <label for="category">Category</label>
+                <select id="category" name="something">
                     <option value="">Automobile</option>
                     <option value="">Furniture</option>
                     <option value="">Books</option>
@@ -67,6 +66,6 @@
                 </select>
             </div>
         </div>
-        <input type="submit">
+        <input class="btn btn-primary" type="submit">
     </div>
 </form>
