@@ -30,7 +30,7 @@ router.get('/search',(r,s)=>{
 
 router.post('/search',(r,s)=>{
 
-    console.log("r body is"+r.body.category)
+    console.log("r body is"+r.body)
     ctrl.searchProduct(r.body)
         .then((data)=>{
             s.render("home",{data})
@@ -53,8 +53,8 @@ router.post('/', upload.single('photo'), (req, res) => {
         console.log("mimetype is "+(req.file.mimetype))
         const extname=filetypes.test(path.extname(req.file.originalname))           //checking the extension of the uploaded file
         const mimetype=filetypes.test(req.file.mimetype)
-        console.log(extname)
-        console.log(mimetype)
+      //  console.log(extname)
+        //console.log(mimetype)
         if(mimetype )
         {
 
@@ -73,9 +73,6 @@ router.post('/', upload.single('photo'), (req, res) => {
             }
             else{
 
-                console.log(req)
-                console.log("req body is ")
-                console.log(req.body)
                 req.body['image']=req.file.originalname
                 ctrl.insertProduct(req.body)
                     .then(()=>{
