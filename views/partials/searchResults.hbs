@@ -1,0 +1,17 @@
+
+<div class="container" >
+    {{#each data as |item|}}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                <div class="col-md-4">
+                    <img height="120" width="120" src='/upload/{{item.pimage}}'>
+                </div>
+                <p class="card-title col-md-2"><strong>name: </strong>{{item.pname}}</p>
+                <p class="card-text col-md-2"><strong>about :</strong> {{item.pabout}}</p>
+                <p class="card-text col-md-2"><strong>price: </strong>{{item.pprice}}</p>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
