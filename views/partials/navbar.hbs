@@ -1,6 +1,17 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
     <form class="form-inline" action="/product/search" method="post">
-        <select id="category" name="category"class="mx-1 py-2">
+        <select type="text" name="city"  class="py-2 form-control text-center">
+            <option value="">Select City</option>
+            <option value="India">India</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Jammu&Kashmir">Jammu&Kashmir</option>
+            <option value="Himachal">Himachal</option>
+            <option value="Uttrakhand">Uttrakhand</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Bihar">Bihar</option>
+        </select>
+        <select id="category" name="category"class="mx-1 form-control py-2">
+            <option value="">Select Category</option>
             <option value="Automobile">Automobile</option>
             <option value="Furniture">Furniture</option>
             <option value="Book">Books</option>

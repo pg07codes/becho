@@ -80,6 +80,7 @@ product.belongsTo(user)
 
 db.sync({
     //alter:true
+    //force:true
 }).then(()=>console.log("db is synced"))
 
 

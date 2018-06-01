@@ -1,3 +1,16 @@
 
 {{>navbar}}
-{{>searchResults}}
+
+    {{#if data.warning}}
+        <div class="alert alert-danger" role="alert">
+            {{data.warning}}
+        </div>
+    {{else}}
+
+        {{>searchResults}}
+    {{/if}}
+
+
+
+
+

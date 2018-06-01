@@ -1,4 +1,5 @@
 const product=require('../db/models').product
+const users=require('../db/models').user
 
 module.exports={
     insertProduct:async(reQuery)=>{
@@ -7,7 +8,8 @@ module.exports={
             pprice:reQuery.price,
             pcategory:reQuery.something,
             pimage:reQuery.image,
-            pabout:reQuery.abt_product
+            pabout:reQuery.abt_product,
+            userId:reQuery.userId
         })
             /*.then(()=>{
                 res.status(201).json({
@@ -35,7 +37,11 @@ module.exports={
             return product.findAll({
                 where:{
                     pcategory:requery.category,
-                }
+                },
+                include:[{
+                    model:users,
+                    attributes:['city']
+                }]
             })
         }
     }

@@ -30,15 +30,59 @@ router.get('/search',(r,s)=>{
 
 router.post('/search',(r,s)=>{
 
-    console.log("r body is"+r.body)
-    ctrl.searchProduct(r.body)
-        .then((data)=>{
-            s.render("home",{data})
-        })
-        .catch((err)=>{
-            s.status(404).json({err:"sorry no product find"})
+    if(r.body.city==="")
+    {
+        let data={
+            warning:"Select the location"
+        }
+        s.render("home",{data})
 
-        })
+    }
+    else{
+        if(r.body.category==='')
+        {
+            let data={
+                warning:"Select the category"
+            }
+            s.render("home",{data})
+        }
+        else{
+            ctrl.searchProduct(r.body)
+                .then((result)=>{
+                   // console.log(data)
+                        let data
+                        if(r.body.city==='India')
+                        {
+                            data=result
+                        }
+                        else
+                        {
+
+                            filter_city=function(item){
+                                console.log(item.user.city)
+                                console.log("kdjals"+r.body.city)
+                                if(item.user.city===r.body.city){
+                                    return true
+                                }
+                            }
+                            data=result.filter(filter_city);
+                        }
+                        //s.status(202).json({data})
+                        if(data.length===0)
+                        {
+                            data['warning']="Sorry no product found"
+                        }
+                            s.render("home",{data})
+
+
+                })
+                .catch((err)=>{
+                   // s.send(err)
+                    s.status(404).json({err:err})
+
+                })
+        }
+    }
 })
 router.post('/', upload.single('photo'), (req, res) => {
     if(!req.user)
@@ -74,6 +118,9 @@ router.post('/', upload.single('photo'), (req, res) => {
             else{
 
                 req.body['image']=req.file.originalname
+                console.log(req.user.id)
+                req.body['userId']=req.user.id
+
                 ctrl.insertProduct(req.body)
                     .then(()=>{
                         res.redirect('/profile')
