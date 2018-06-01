@@ -103,7 +103,7 @@ router.post('/', upload.single('photo'), (req, res) => {
         {
 
             fs.readFile(req.file.path, (err, data) => {
-                fs.writeFile('public/upload/'+req.file.originalname, data, (err) => {
+                fs.writeFile('assets/upload/'+req.file.originalname, data, (err) => {
                     console.log(err)
 
                     fs.unlink(req.file.path, () => {})
