@@ -22,7 +22,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/assets", express.static(path.join(__dirname, "assets")))
-
 //setting up of the view engine
 app.set("view engine","hbs")
 app.set("views","views")
@@ -34,7 +33,7 @@ app.engine("hbs",hbs.express4({
 
 //home route
 app.get("/",(r,s)=>{
-    s.render("home",{title:"ghar",r:r})
+    s.render("home",{undefined,title:"ghar",r:r})
 })
 app.use("/sell",require('./routes/Rsell'))
 app.use("/auth",require('./routes/authroutes'))
