@@ -8,6 +8,7 @@ const upload = multer({dest: 'uploads/'})
 router.get('/',(r,s)=>{
     if(r.isAuthenticated())
     {
+        console.log("sjflkasjflksjflk"+r.isAuthenticated())
         let user={}
         user.name=r.user.name
         user.id=r.user.id

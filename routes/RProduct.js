@@ -30,7 +30,7 @@ router.get('/search',(r,s)=>{
 
 router.post('/search',(r,s)=>{
 
-    if(r.body.city==="")
+    if(r.body.state==="")
     {
         let data={
             warning:"Select the location"
@@ -51,21 +51,21 @@ router.post('/search',(r,s)=>{
                 .then((result)=>{
                    // console.log(data)
                         let data
-                        if(r.body.city==='India')
+                        if(r.body.state==='India')
                         {
                             data=result
                         }
                         else
                         {
 
-                            filter_city=function(item){
-                                console.log(item.user.city)
-                                console.log("kdjals"+r.body.city)
-                                if(item.user.city===r.body.city){
+                            filter_state=function(item){
+                                console.log(item.pstate)
+                                console.log("kdjals"+r.body.state)
+                                if(item.pstate===r.body.state){
                                     return true
                                 }
                             }
-                            data=result.filter(filter_city);
+                            data=result.filter(filter_state);
                         }
                         //s.status(202).json({data})
                         if(data.length===0)

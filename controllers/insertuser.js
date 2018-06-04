@@ -8,7 +8,7 @@ module.exports={
                 email:r.body.email,
                 password:r.body.password,
                 phn:r.body.phn,
-                city:r.body.city,
+                state:r.body.state,
                 location:r.body.location
             }).then((user)=>{
                 s.redirect(`/auth/profile`)

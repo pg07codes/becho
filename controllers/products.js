@@ -9,7 +9,9 @@ module.exports={
             pcategory:reQuery.something,
             pimage:reQuery.image,
             pabout:reQuery.abt_product,
-            userId:reQuery.userId
+            userId:reQuery.userId,
+            pstate:reQuery.state
+
         })
             /*.then(()=>{
                 res.status(201).json({
@@ -37,11 +39,7 @@ module.exports={
             return product.findAll({
                 where:{
                     pcategory:requery.category,
-                },
-                include:[{
-                    model:users,
-                    attributes:['city']
-                }]
+                }
             })
         }
     }

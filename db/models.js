@@ -33,7 +33,7 @@ const user=db.define("user",{
         allowNull:false,
         type:dt.STRING
     },
-    city:{
+    state:{
         allowNull:false,
         type:dt.STRING
     },
@@ -72,6 +72,10 @@ const product=db.define("product",{
         allowNull:false,
         type:dt.STRING
     },
+    pstate:{
+        allowNull:false,
+        type:dt.STRING
+    }
 })
 
 user.hasMany(product)
