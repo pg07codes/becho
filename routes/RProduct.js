@@ -27,7 +27,6 @@ router.get('/',(r,s)=>{
 router.get('/search',(r,s)=>{
     s.send("hi")
 })
-
 router.post('/search',(r,s)=>{
 
     if(r.body.state==="")
@@ -35,21 +34,31 @@ router.post('/search',(r,s)=>{
         let data={
             warning:"Select the location"
         }
+        if(r.user){
+            data['user']=r.user.name
+        }
         s.render("home",{data})
 
     }
     else{
-        if(r.body.category==='')
+        if(r.body.specific_product==='')
         {
-            let data={
-                warning:"Select the category"
+            if(r.body.category==='')
+            {
+                let data={
+                    warning:"Select the category"
+                }
+                if(r.user){
+                    data['user']=r.user.name
+                }
+                s.render("home",{data})
             }
-            s.render("home",{data})
-        }
-        else{
-            ctrl.searchProduct(r.body)
-                .then((result)=>{
-                   // console.log(data)
+            else
+            {
+
+                ctrl.searchProduct(r.body)
+                    .then((result)=>{
+                        // console.log(data)
                         let data
                         if(r.body.state==='India')
                         {
@@ -57,8 +66,8 @@ router.post('/search',(r,s)=>{
                         }
                         else
                         {
-
-                            filter_state=function(item){
+                            filter_state=function(item)
+                            {
                                 console.log(item.pstate)
                                 console.log("kdjals"+r.body.state)
                                 if(item.pstate===r.body.state){
@@ -66,22 +75,46 @@ router.post('/search',(r,s)=>{
                                 }
                             }
                             data=result.filter(filter_state);
+
                         }
                         //s.status(202).json({data})
                         if(data.length===0)
                         {
                             data['warning']="Sorry no product found"
                         }
-                            s.render("home",{data})
+                        if(r.user){
+                            data['user']=r.user.name
+                        }
+                        s.render("home",{data})
 
 
-                })
-                .catch((err)=>{
-                   // s.send(err)
-                    s.status(404).json({err:err})
+                    })
+                    .catch((err)=>{
+                        // s.send(err)
+                        s.status(404).json({err:err})
+
+                    })
+
+            }
+
+        }
+        else
+        {
+
+            ctrl.search_spec_product(r.body)
+                .then((data)=>{
+                    if(data.length===0)
+                    {
+                        data['warning']="Sorry no product found"
+                    }
+                    if(r.user){
+                        data['user']=r.user.name
+                    }
+                    s.render("home",{data})
 
                 })
         }
+
     }
 })
 router.post('/', upload.single('photo'), (req, res) => {

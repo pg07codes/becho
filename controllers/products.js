@@ -42,5 +42,15 @@ module.exports={
                 }
             })
         }
+    },
+    search_spec_product:(requery)=> {
+        return product.findAll({
+            where:{
+                pname:{
+                    $like:'%'+requery.specific_product+'%'
+
+                }
+            }
+        })
     }
 }
