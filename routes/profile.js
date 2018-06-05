@@ -34,7 +34,7 @@ router.delete("/myadvertisement/delete",(r,s)=>{
     ctrl.get_particular_Add(r.body)
         .then((data)=>{
             console.log(data.dataValues.pimage)
-            fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{
+            fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{ //uploading same photo will cause an error here
                 if(err){
                     s.status(400).json({
                         err:err
