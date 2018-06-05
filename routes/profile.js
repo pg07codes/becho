@@ -31,11 +31,25 @@ router.get("/myadvertisements",(r,s)=>{
 
 router.delete("/myadvertisement/delete",(r,s)=>{
 
-    ctrl.deleteAdd(r.body)
-        .then(()=>{
+    ctrl.get_particular_Add(r.body)
+        .then((data)=>{
+            console.log(data.dataValues.pimage)
+            fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{
+                if(err){
+                    s.status(400).json({
+                        err:err
+                    })
+                }
+                else
+                {
 
-            s.status(200).json({
-                success:"deleted"
+                    ctrl.deleteAdd(r.body)
+                        .then(()=>{
+                            s.status(200).json({
+                                success:"deleted"
+                            })
+                        })
+                }
             })
         })
 
