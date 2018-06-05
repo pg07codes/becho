@@ -1,0 +1,42 @@
+{{>navbar}}
+<div class="container">
+    {{#if isEmpty}}
+        <div class="alert alert-danger col-md " role="alert">
+            You have not posted any advertisements. Post a new advertisement now and earn money.
+        </div>
+    {{/if}}
+
+{{#each data as |item|}}
+    <div class="card mt-2 bg-light">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img height="120" width="120" src='/assets/upload/{{item.pimage}}'>
+                </div>
+                <p class="card-title col-md-2"><strong>Name: </strong>{{item.pname}}</p>
+                <p class="card-text col-md-2"><strong>About:</strong> {{item.pabout}}</p>
+                <p class="card-text col-md-2"><strong>Price: </strong>{{item.pprice}}</p>
+                <p class="card-text col-md-2"><strong>State: </strong>{{item.pstate}}</p>
+            </div>
+            <div class="row">
+                <div class=" col-md mt-2">
+                    <button onclick="deleteAdd({{item.pid}})" class=" btn-sm btn btn-danger float-right">DELETE ADVERTISEMENT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}
+</div>
+
+<script>
+    function deleteAdd(id){
+        $.ajax({
+            url: `/profile/myadvertisement/delete/${id}`,
+            type: 'DELETE',
+            success: function(result) {
+                for(let i=0;i<10000;i++); //used to make the page reload after sometime so that add is deleted first then page is reloaded
+                location.reload(true)
+            }
+        });
+    }
+</script>
