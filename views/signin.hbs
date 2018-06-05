@@ -1,12 +1,13 @@
 
 {{>navbar}}
-<div id="error" class="row">
 
-</div>
-<div class="container">
+<div class="container signin">
+    <div id="error" class="row">
+
+    </div>
     <form  id="signinForm" method="post" action="/auth/signin">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 offset-md-4">
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" autofocus>
@@ -15,7 +16,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4  offset-md-4">
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
@@ -23,16 +24,16 @@
             </div>
         </div>
 
-        <button type="submit" onclick="productRedirect()" class="btn btn-primary">Submit</button>
+        <button type="submit" onclick="productRedirect()" class="col-md-4 btn btn-success offset-md-4">Submit</button>
     </form>
-    <a href="/auth/signup"><input  class="btn btn-secondary" type="button" value="New? Sign up for free here!"></a>
+    <a href="/auth/signup"><input class=" col-md-2 mt-2 offset-md-5 btn btn-light btn-sm" type="button" value="New? Sign up for free here!"></a>
 
 </div>
 <script>
     if(document.URL==="http://localhost:8888/auth/signin?ein=true")
     {
-        $("#error").append(`<div class="alert alert-danger col-md-4" role="alert">
-    Username or password is incorrect. Please try again.</div>`)
+        $("#error").append(`<div class="alert alert-danger col-md-4 offset-4" role="alert">
+    Credentials are incorrect. Please try again.</div>`)
     }
     function productRedirect(){
         if(document.URL==="http://localhost:8888/auth/signin?sell=true")
@@ -42,3 +43,10 @@
     }
 
 </script>
+
+<style>
+    .signin{
+        margin-top: 100px;
+    }
+</style>
+

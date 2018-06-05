@@ -1,42 +1,30 @@
-<nav class="navbar navbar-light bg-light justify-content-between">
+<nav class="navbar navbar-dark bg-dark justify-content-end">
     {{#if r.user}}
         <a href="/profile"><button class="btn btn-primary">hi {{r.user.name}} </button></a>
     {{/if}}
-    <form class="form-inline" action="/product/search" method="post">
-        <select type="text" name="state"  class="py-2 form-control text-center">
-            <option value="">Select State</option>
-            <option value="India">India</option>
-            <option value="Delhi">Delhi</option>
-            <option value="Jammu&Kashmir">Jammu&Kashmir</option>
-            <option value="Himachal">Himachal</option>
-            <option value="Uttrakhand">Uttrakhand</option>
-            <option value="Uttar Pradesh">Uttar Pradesh</option>
-            <option value="Bihar">Bihar</option>
-        </select>
-        <select id="category" name="category"class="mx-1 form-control py-2">
-            <option value="">Select Category</option>
-            <option value="Automobile">Automobile</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Book">Books</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Fitness">Fitness</option>
-            <option value="Pets">Pets</option>
-        </select>
-        <input type="text"  class="form-control" placeholder="Specific Product" name="specific_product">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <a href="/sell"><input type="button" class="btn btn-danger" value="Post a Free Ad"></a>
+    <a href="/sell">Post a free Ad</a>
     {{#if r.user}}
 <!--why r.isAuthenticated is returning false herein case of home page-->
-        <a href="/profile/myadvertisements"><input type="button" class="btn btn-success" value="MyAdvertisements"></a>
-        <a href="/auth/signout"><input type="button" class="btn btn-danger" value="Logout"></a>
+        <a href="/profile/myadvertisements">My Advertisements</a>
+        <a href="/auth/signout">Logout</a>
     {{else if data.user}}
-        <a href="/profile/myadvertisements"><input type="button" class="btn btn-success" value="MyAdvertisements"></a>
-        <a href="/auth/signout"><input type="button" class="btn btn-danger" value="Logout"></a>
+        <a href="/profile/myadvertisements">My Advertisements</a>
+        <a href="/auth/signout">Logout</a>
     {{else}}
-        <a href="/auth/signin"><input type="button" class="btn btn-secondary" value="Signin"></a>
-        <a href="/auth/signup"><input type="button" class="btn btn-primary" value="Signup"></a>
+        <a href="/auth/signin">Signin</a>
+        <a href="/auth/signup">Signup</a>
     {{/if}}
 </nav>
+<style>
+    a{
+        text-decoration: none !important;
+        color: whitesmoke;
+        font-size: 20px;
+        margin:auto 15px;
+    }
+    a:hover{
+        color: whitesmoke;
+    }
+</style>
 
 

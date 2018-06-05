@@ -1,11 +1,12 @@
 {{>navbar}}
-<div id="error" class="row">
 
-</div>
-<div class="container">
+<div class="container signup">
+    <div id="error" class="row">
+
+    </div>
     <form method="post" action="/auth/signup">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 offset-2">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Name" autofocus>
@@ -19,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 offset-2">
                 <div class="form-group">
                     <label for="location">Locality</label>
 
@@ -43,14 +44,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8 offset-2">
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-2">
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
@@ -63,8 +66,7 @@
                 </div>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn col-md-2 offset-5 mt-3 btn-success">Register</button>
     </form>
 
 </div>
@@ -72,7 +74,12 @@
 <script>
     if(document.URL==="http://localhost:8888/auth/signup?eup=true")
     {
-        $("#error").append(`<div class="alert alert-danger  col-md-4" role="alert">
+        $("#error").append(`<div class="alert alert-danger col-md-4 offset-4" role="alert">
     Passwords do not match. Please try again.</div>`)
     }
 </script>
+<style>
+    .signup{
+        margin-top: 80px;
+    }
+</style>
