@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light justify-content-between">
     {{#if r.user}}
-    HI,{{r.user.name}}
+        <a href="/profile"><button class="btn btn-primary">hi {{r.user.name}} </button></a>
     {{/if}}
     <form class="form-inline" action="/product/search" method="post">
         <select type="text" name="state"  class="py-2 form-control text-center">
@@ -28,8 +28,10 @@
     <a href="/sell"><input type="button" class="btn btn-danger" value="Post a Free Ad"></a>
     {{#if r.user}}
 <!--why r.isAuthenticated is returning false herein case of home page-->
+        <a href="/profile/myadvertisements"><input type="button" class="btn btn-success" value="MyAdvertisements"></a>
         <a href="/auth/signout"><input type="button" class="btn btn-danger" value="Logout"></a>
     {{else if data.user}}
+        <a href="/profile/myadvertisements"><input type="button" class="btn btn-success" value="MyAdvertisements"></a>
         <a href="/auth/signout"><input type="button" class="btn btn-danger" value="Logout"></a>
     {{else}}
         <a href="/auth/signin"><input type="button" class="btn btn-secondary" value="Signin"></a>

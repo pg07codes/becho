@@ -52,5 +52,13 @@ module.exports={
                 }
             }
         })
+    },
+    myAds:(r,s)=>{
+        return (product.findAll({
+            where:{
+                userId:r.user.id
+            }
+        })
+        )
     }
 }

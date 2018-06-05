@@ -3,6 +3,7 @@ const multer=require('multer')
 const path=require('path')
 const fs=require('fs')
 const upload = multer({dest: 'uploads/'})
+const ctrl=require("../controllers/products")
 
 
 router.get('/',(r,s)=>{
@@ -17,9 +18,14 @@ router.get('/',(r,s)=>{
     else
         s.redirect('./auth/signin')
 })
-
-
-router.post('/',(req, res) => {
-
+router.get("/myadvertisements",(r,s)=>{
+   if(r.isAuthenticated()){
+       ctrl.myAds(r,s).then((data)=>{
+           let isEmpty= (data.length===0)
+           s.render("myAds",{title:"My Ads",data:data,r:r,isEmpty:isEmpty})
+       })
+   }
+   else
+       s.redirect("/auth/signin")
 })
 module.exports=router
