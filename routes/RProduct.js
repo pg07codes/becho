@@ -156,10 +156,10 @@ router.post('/', upload.single('photo'), (req, res) => {
 
                 ctrl.insertProduct(req.body)
                     .then(()=>{
-                        res.redirect('/profile')
+                        res.redirect('/profile/myadvertisements')
                     })
                     .catch((err)=>{
-                        res.redirect('/profile')
+                        res.redirect('/profile/myadvertisements')
                     })
             }
         }
