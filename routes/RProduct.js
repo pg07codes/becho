@@ -57,27 +57,8 @@ router.post('/search',(r,s)=>{
             {
 
                 ctrl.searchProduct(r.body)
-                    .then((result)=>{
-                        // console.log(data)
-                        let data
-                        if(r.body.state==='India')
-                        {
-                            data=result
-                        }
-                        else
-                        {
-                            filter_state=function(item)
-                            {
-                                console.log(item.pstate)
-                                console.log("kdjals"+r.body.state)
-                                if(item.pstate===r.body.state){
-                                    return true
-                                }
-                            }
-                            data=result.filter(filter_state);
-
-                        }
-                        //s.status(202).json({data})
+                    .then((data)=>{
+                        //console.log(data)
                         if(data.length===0)
                         {
                             data['warning']="Sorry no product found"

@@ -13,19 +13,19 @@ module.exports={
             pstate:reQuery.state
 
         })
-            /*.then(()=>{
-                res.status(201).json({
-                    success:'true'
-                })
+        /*.then(()=>{
+            res.status(201).json({
+                success:'true'
             })
-            .catch((err)=>{
-                res.status(404).json({
-                    success:'false'
-                })
-            })*/
+        })
+        .catch((err)=>{
+            res.status(404).json({
+                success:'false'
+            })
+        })*/
     },
     searchProduct:(requery)=>{
-        if(requery.location==='India'||requery.location==='INDIA')
+        if(requery.state==='India')
         {
 
             return product.findAll({
@@ -39,6 +39,7 @@ module.exports={
             return product.findAll({
                 where:{
                     pcategory:requery.category,
+                    pstate:requery.state
                 }
             })
         }
@@ -55,10 +56,10 @@ module.exports={
     },
     myAds:(r,s)=>{
         return (product.findAll({
-            where:{
-                userId:r.user.id
-            }
-        })
+                where:{
+                    userId:r.user.id
+                }
+            })
         )
     },
     deleteAdd:(requery)=>{
