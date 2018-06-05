@@ -60,5 +60,12 @@ module.exports={
             }
         })
         )
+    },
+    deleteAdd:(r,s)=>{
+        product.destroy({
+            where:{
+                pid:r.params.id
+            }
+        })
     }
 }

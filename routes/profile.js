@@ -28,4 +28,9 @@ router.get("/myadvertisements",(r,s)=>{
    else
        s.redirect("/auth/signin")
 })
+
+router.delete("/myadvertisement/delete/:id",(r,s)=>{
+    ctrl.deleteAdd(r,s)
+     s.sendStatus(200)
+})
 module.exports=router
