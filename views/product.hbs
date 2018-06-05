@@ -1,7 +1,8 @@
 {{>navbar}}
+<div class="container bg-light addProduct">
 <form action="/product" enctype="multipart/form-data" method="post">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 offset-2">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name"  name="name" placeholder="Product Name" autofocus>
@@ -15,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 offset-2">
             <div class="form-group">
                 <label for="abt_product">About Product</label>
                 <textarea type="" name="abt_product" class="form-control" id="abt_product" placeholder="About Product"></textarea>
@@ -23,14 +24,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 offset-2">
             <div class="form-group">
                 <label for="user_name">User Name</label>
                 <input type="text" class="form-control" id="user_name"  name="user_name" placeholder="User Name" value="{{user.name}}">
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 ">
             <div class="form-group">
                 <label for="state">State</label>
                 <select type="text" name="state"  class="py-2 form-control text-center">
@@ -47,25 +48,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4 offset-2">
             <div class="form-group">
                 <label for="phn">Phone Number</label>
                 <input type="number" name="phn" class="form-control" id="phn" placeholder="Phone Number" value="{{user.phn}}">
             </div>
         </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-4">
             <div class="form-group">
                 <label for="photo">Select photo</label>
                 <input type="file" id="photo" name="photo" required>
             </div>
         </div>
-        <div class="col-md-4">
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-2">
             <div class="form-group">
-
-
                 <label for="category">Category </label>
                <!-- <input type="text" id="photo" name="something" placeholder="Category">-->
                 <select id="category" name="something">
@@ -76,9 +74,21 @@
                     <option value="Fitness">Fitness</option>
                     <option value="Pets">Pets</option>
                 </select>
-
             </div>
         </div>
-        <input class="btn btn-primary" type="submit">
+    </div>
+    <div class="col-md-4 offset-5">
+        <input class="btn btn-success col-md-6" type="submit">
     </div>
 </form>
+</div>
+
+<style>
+    .addProduct{
+        margin-top: 50px;
+        padding:10px;
+    }
+    body{
+        background: url("../assets/images/theme.jpg");
+    }
+</style>
