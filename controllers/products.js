@@ -67,5 +67,12 @@ module.exports={
                 pid:requery.id
             }
         })
+    },
+    get_particular_Add:(requery)=>{
+        return product.findOne({
+            where:{
+                pid:requery.id
+            }
+        })
     }
 }
