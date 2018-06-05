@@ -61,10 +61,10 @@ module.exports={
         })
         )
     },
-    deleteAdd:(r,s)=>{
-        product.destroy({
+    deleteAdd:(requery)=>{
+        return product.destroy({
             where:{
-                pid:r.params.id
+                pid:requery.id
             }
         })
     }
