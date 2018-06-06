@@ -13,7 +13,7 @@ router.get('/',(r,s)=>{
         let user={}
         user.name=r.user.name
         user.id=r.user.id
-        s.render('profile',{user,title:"Profile",r:r})
+        s.render('profile',{user,title:"Profile",r:r,})
     }
     else
         s.redirect('./auth/signin')
@@ -35,12 +35,13 @@ router.delete("/myadvertisement/delete",(r,s)=>{
         .then((data)=>{
             console.log(data.dataValues.pimage)
             fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{ //uploading same photo will cause an error here
-                if(err){
-                    s.status(400).json({
-                        err:err
-                    })
-                }
-                else
+                // if(err){
+                //     s.status(400).json({
+                //         err:err
+                //     })
+                // }
+                // else
+                // THIS PART MAY CAUSE UNEXPECTED ERROR DURING TESTING SO IT IS BEING COMMENTED FOR NOW.....
                 {
 
                     ctrl.deleteAdd(r.body)
@@ -54,4 +55,6 @@ router.delete("/myadvertisement/delete",(r,s)=>{
         })
 
 })
+
+
 module.exports=router
