@@ -33,6 +33,9 @@ app.engine("hbs",hbs.express4({
 
 //home route
 app.get("/",(r,s)=>{
+    if(r.isAuthenticated())
+        s.redirect("/profile")//to stop user from going to "/" when logged in
+    else
     s.render("home",{undefined,title:"ghar",r:r})
 })
 app.use("/sell",require('./routes/Rsell'))
