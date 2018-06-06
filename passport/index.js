@@ -2,6 +2,7 @@ const passport = require('passport')
 const strategies = require('./strategies')
 const user = require('../db/models').user
 
+
 passport.use(strategies.localStrategy)
 
 passport.serializeUser(function (user, done) {
