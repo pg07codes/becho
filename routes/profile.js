@@ -56,5 +56,12 @@ router.delete("/myadvertisement/delete",(r,s)=>{
 
 })
 
+router.get("/editDetails",(r,s)=>{
+   if(r.isAuthenticated())
+       s.render("editDetails",{r:r})
+   else
+       s.redirect("/auth/signin")
+
+})
 
 module.exports=router

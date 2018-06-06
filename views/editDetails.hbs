@@ -1,0 +1,78 @@
+{{>navbar}}
+
+<div class="container bg-light editDetails">
+    <form method="post" action="#">
+        <div class="row">
+            <div class="col-md-4 offset-2">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" value="{{r.user.name}}" class="form-control" id="name"  name="name" placeholder="Enter Name" autofocus>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="phn">Your Contact Number</label>
+                    <input type="number" value="{{r.user.phn}}" name="phn" class="form-control" id="phn" placeholder="Contact Number">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-2">
+                <div class="form-group">
+                    <label for="location">Locality</label>
+
+                    <input type="text" value="{{r.user.location}}" name="location" class="form-control" id="location" placeholder="Your location">
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select type="text" name="state"  class="py-2 form-control text-center">
+                        <option value="{{r.user.state}}">Select State</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Jammu&Kashmir">Jammu&Kashmir</option>
+                        <option value="Himachal">Himachal</option>
+                        <option value="Uttrakhand">Uttrakhand</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Bihar">Bihar</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" name="email" value="{{r.user.email}}" class="form-control" id="email" placeholder="Enter email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-2">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" value="{{r.user.password}}" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" value="{{r.user.password}}" name="cpassword" class="form-control" id="cpassword" placeholder="Confirm Password">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn col-md-2 offset-5 mt-3 btn-success">Save New Details</button>
+    </form>
+
+</div>
+
+<style>
+    .editDetails{
+        margin-top: 80px;
+        padding:10px;
+    }
+    body{
+        background: url("../assets/images/profile_theme.jpg");
+    }
+</style>
