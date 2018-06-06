@@ -6,9 +6,11 @@
     <a href="/sell">Post a free Ad</a>
     {{#if r.user}}
 <!--why r.isAuthenticated is returning false herein case of home page-->
+        <a href="/profile/chats">Chats</a>
         <a href="/profile/myadvertisements">My Advertisements</a>
         <a href="/auth/signout">Logout</a>
     {{else if data.user}}
+        <a href="/profile/chats">Chats</a>
         <a href="/profile/myadvertisements">My Advertisements</a>
         <a href="/auth/signout">Logout</a>
     {{else}}
