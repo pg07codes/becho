@@ -1,4 +1,5 @@
 <nav class="navbar navbar-dark bg-dark justify-content-end">
+    {{>adSearch}}
     {{#if r.user}}
         <a href="/profile"><button class="btn btn-primary">hi {{r.user.name}} </button></a>
     {{/if}}

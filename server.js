@@ -7,6 +7,17 @@ const session=require("express-session")
 const app = express()
 
 
+//socket//
+/*
+const http=require('http')
+const server=http.createServer(app)
+const socketio=require('socket.io')
+const io=socketio(server)
+
+io.on('connection',(socket)=>{
+console.log("socket id is"+socket.id)
+})
+*/
 //serving files and parsing request body
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
