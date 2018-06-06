@@ -64,4 +64,11 @@ router.get("/editDetails",(r,s)=>{
 
 })
 
+router.get("/chats",(r,s)=>{
+    if(r.isAuthenticated())
+        s.render("chats",{title:"Chats",r:r})
+    else
+        s.redirect("/auth/signin")
+})
+
 module.exports=router

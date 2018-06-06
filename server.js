@@ -7,6 +7,15 @@ const session=require("express-session")
 const app = express()
 
 
+//testing socketssssss
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+io.on('connection', function(socket) {
+    console.log(socket.id)
+    socket.emit('news', {hello: 'world'})
+})
+//till here............
+
 //serving files and parsing request body
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -42,7 +51,10 @@ app.use("/sell",require('./routes/Rsell'))
 app.use("/auth",require('./routes/authroutes'))
 app.use("/product",require('./routes/RProduct'))
 app.use("/profile",require('./routes/profile'))
+
 //server starts listening
-app.listen(8888, () =>
+server.listen(8888, () =>
     console.log("up at http://localhost:8888")
 )
+
+module.exports=app;
