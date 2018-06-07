@@ -19,8 +19,8 @@
                 <p class="card-text col-md-2"><strong>State: </strong>{{item.pstate}}</p>
             </div>
             <div class="row">
-                <div class=" col-md mt-2">
-                    <button onclick="deleteAdd({{item.pid}})" class=" btn-sm btn btn-danger float-right">DELETE ADVERTISEMENT</button>
+                <div class="col-md mt-2">
+                    <button onclick="deleteAdd('{{item.pid}}')" class="btn-sm btn btn-danger float-right">DELETE ADVERTISEMENT</button>
                 </div>
             </div>
         </div>
@@ -30,11 +30,12 @@
 
 <script>
     function deleteAdd(id){
+        console.log(id)
         $.ajax({
             url: `/profile/myadvertisement/delete`,
             type: 'DELETE',
             data:{
-                    id:id
+                    id:(id)
                 },
             success: function(result) {
                 location.reload(true)

@@ -4,8 +4,9 @@ const path=require('path')
 const fs=require('fs')
 const upload = multer({dest: 'uploads/'})
 const ctrl=require("../controllers/products")
+const Hashids=require('hashids')
 
-
+var hash=new Hashids()
 router.get('/',(r,s)=>{
     if(r.isAuthenticated())
     {
@@ -22,6 +23,13 @@ router.get("/myadvertisements",(r,s)=>{
    if(r.isAuthenticated()){
        ctrl.myAds(r,s).then((data)=>{
            let isEmpty= (data.length===0)
+           console.log(data)
+           data.forEach(function(ele){
+               //console.log(ele.dataValues.pid)
+               //console.log(hash.encode(ele.dataValues.pid))
+
+               ele.dataValues.pid=''+(hash.encode(ele.dataValues.pid))
+           })
            s.render("myAds",{title:"My Ads",data:data,r:r,isEmpty:isEmpty})
        })
    }
@@ -30,17 +38,21 @@ router.get("/myadvertisements",(r,s)=>{
 })
 
 router.delete("/myadvertisement/delete",(r,s)=>{
+    console.log("post id is "+r.body.id)
+    console.log("post id is "+hash.decode(r.body.id))
+
+    r.body.id=hash.decode(r.body.id)
 
     ctrl.get_particular_Add(r.body)
         .then((data)=>{
             console.log(data.dataValues.pimage)
             fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{ //uploading same photo will cause an error here
-                // if(err){
-                //     s.status(400).json({
-                //         err:err
-                //     })
-                // }
-                // else
+                 if(err){
+                     s.status(400).json({
+                         err:err
+                     })
+                 }
+                 else
                 // THIS PART MAY CAUSE UNEXPECTED ERROR DURING TESTING SO IT IS BEING COMMENTED FOR NOW.....
                 {
 
