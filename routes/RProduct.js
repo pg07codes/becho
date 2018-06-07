@@ -12,17 +12,13 @@ router.get('/',(r,s)=>{
     }
     else
     {
-
         ctrl.searchProduct(r)
             .then((data)=>{
                 s.send(data)})
             .catch((err)=>{
                 s.status(404).json({err:"sorry no product find"})
-
             })
-
     }
-
 })
 router.get('/search/:id',(r,s)=>{
     console.log(r.params.id)
@@ -33,7 +29,25 @@ router.get('/search/:id',(r,s)=>{
             req['user'].id=results.userId
             ctrl.myAds(req)
                 .then((data)=>{
-                    data['specific']=results
+                    let del_index                                       //to remove the product which is already..
+                                                                        // present in the result
+                    data.forEach((item,index)=>{
+                        console.log(item.dataValues.pid)
+                        if(item.dataValues.pid===parseInt(r.params.id)){
+                            del_index=index
+                            console.log("index is"+index)
+                        }
+                    })
+                    data.splice(del_index,1)
+                    /*for(let i=0;i<data.length;i++)
+                    {
+                        console.log(data[i])
+                        console.log(data[i].dataValues.pid)
+ >>doubt why ===(true here 4 every case>>>        //if(toString(data[i].dataValues.pid)===toString(r.params.id)){
+                           console.log("found"+data[i].dataValues.pid)
+                    }
+                    }*/
+                    data['specific']=results.dataValues
                     s.render('desc_product',{data})
                 })
 
