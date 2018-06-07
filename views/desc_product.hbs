@@ -1,0 +1,25 @@
+{{>navbar}}
+<div class="container">
+    <div class="card mt-2 "style="background-color: wheat">
+        <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
+        <div class="card-body">
+            <a href="/product/search/{{data.specific.pid}}">
+
+                <div class="row"style="color: black;">
+                    <div class="col-md-4 ">
+                        <img height="120" width="120" src='/assets/upload/{{data.specific.pimage}}'>
+                    </div>
+                    <p class="card-title col-md-2"><strong>name: </strong>{{data.specific.pname}}</p>
+                    <p class="card-text col-md-2"><strong>about :</strong> {{data.specific.pabout}}</p>
+                    <p class="card-text col-md-2"><strong>price: </strong>{{data.specific.pprice}}</p>
+                    <p class="card-text col-md-2"><strong>State: </strong>{{data.specific.pstate}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<p>Other Ads from this user:</p>
+</div>
+
+    {{>searchResults}}
+
+

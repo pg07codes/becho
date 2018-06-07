@@ -24,6 +24,23 @@ router.get('/',(r,s)=>{
     }
 
 })
+router.get('/search/:id',(r,s)=>{
+    console.log(r.params.id)
+    ctrl.get_particular_Add(r.params)
+        .then((results)=>{
+            //console.log(results.dataValues)
+            let req={user:{ }}
+            req['user'].id=results.userId
+            ctrl.myAds(req)
+                .then((data)=>{
+                    data['specific']=results
+                    s.render('desc_product',{data})
+                })
+
+
+        })
+
+})
 router.get('/search',(r,s)=>{
     s.send("hi")
 })

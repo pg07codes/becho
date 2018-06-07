@@ -45,14 +45,27 @@ module.exports={
         }
     },
     search_spec_product:(requery)=> {
-        return product.findAll({
-            where:{
-                pname:{
-                    $like:'%'+requery.specific_product+'%'
-
+        if(requery.id)
+        {
+            console.log("sdfhjashfk"+requery)
+            console.log(requery.id)
+            return product.findOne({
+                where:{
+                    pid:requery.id
                 }
-            }
-        })
+            })
+        }
+        else{
+            return product.findAll({
+                where:{
+                    pname:{
+                        $like:'%'+requery.specific_product+'%'
+
+                    }
+                }
+            })
+        }
+
     },
     myAds:(r,s)=>{
         return (product.findAll({
