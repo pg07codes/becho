@@ -3,9 +3,25 @@ const express = require("express")
 const path = require("path")
 const hbs=require("express-hbs")
 const passport=require("./passport")
-const session=require("express-session")
+const expressSession=require("express-session")
+const SessionStore=require('express-session-sequelize')(expressSession.Store)
+const cookieParser=require('cookie-parser')
+const db=require('./db/models').db
 const app = express()
 
+
+////express session store//////////
+
+const sequelizeSessionStore=new SessionStore({
+    db:db
+})
+app.use(cookieParser())
+app.use(expressSession({
+    secret:"random salt",
+    resave:false,
+    saveUninitialized:false,
+    store:sequelizeSessionStore
+}))
 
 //testing socketssssss
 const server = require('http').createServer(app);
@@ -21,11 +37,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-app.use(session({
-    secret:"random salt",
-    resave:false,
-    saveUninitialized:false
-}))
 
 app.use(passport.initialize())
 app.use(passport.session())
