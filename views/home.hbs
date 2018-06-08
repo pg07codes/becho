@@ -1,5 +1,14 @@
 
 {{>navbar}}
+<div class="card m-5 bg-light">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8 offset-3">
+                {{>adSearch}}
+            </div>
+        </div>
+    </div>
+</div>
 
     {{#if data.warning}}
         <div class="alert alert-danger" role="alert">

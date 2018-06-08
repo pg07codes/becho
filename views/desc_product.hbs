@@ -1,6 +1,6 @@
 {{>navbar}}
-<div class="container">
-    <div class="card mt-2 "style="background-color: wheat">
+<div class="container x">
+    <div class="card mt-2" style="background-color: whitesmoke">
         <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
         <div class="card-body">
             <a href="/product/search/{{data.specific.pid}}">
@@ -17,9 +17,14 @@
             </a>
         </div>
     </div>
-<p>Other Ads from this user:</p>
+    <h3 style="padding:20px; color: whitesmoke"><strong>Other Ads from this user:</strong></h3>
 </div>
+{{>searchResults}}
 
-    {{>searchResults}}
 
+<style>
+    body{
+        background: url("../../assets/images/theme.jpg");
+    }
+</style>
 

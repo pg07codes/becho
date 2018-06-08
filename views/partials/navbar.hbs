@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark bg-dark justify-content-end">
-    {{>adSearch}}
+    <div id="navSearch">{{>adSearch}}</div>
+
     {{#if r.user}}
         <a href="/profile"><button class="btn btn-primary">hi {{r.user.name}} </button></a>
     {{/if}}
@@ -29,5 +30,12 @@
         color: whitesmoke;
     }
 </style>
+
+<script>
+    if(document.URL==="http://localhost:8888/" || document.URL==="http://localhost:8888/product/search" ){
+
+        console.log($("#navSearch").empty())
+    }
+</script>
 
 

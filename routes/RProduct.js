@@ -56,7 +56,7 @@ router.get('/search/:id',(r,s)=>{
 
 })
 router.get('/search',(r,s)=>{
-    s.send("hi")
+    s.send("Cannot 'GET' this page . please go BACK.")
 })
 router.post('/search',(r,s)=>{
 
