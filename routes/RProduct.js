@@ -48,7 +48,7 @@ router.get('/search/:id',(r,s)=>{
                     }
                     }*/
                     data['specific']=results.dataValues
-                    s.render('desc_product',{data})
+                    s.render('desc_product',{data:data,r:r})
                 })
 
 
