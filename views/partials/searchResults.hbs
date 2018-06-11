@@ -1,5 +1,6 @@
 
 <div class="container">
+    <p >{{r.user.name}}</p>
     {{#each data as |item|}}
         <div class="card mt-2 bg-light">
             <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
@@ -17,10 +18,13 @@
                         </div>
                     </a>
                     <p>{{item.user}}</p>
-                    {{#if r.user}}
-                    <button id="bookmark_btn" onclick="bookmark({{item.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
+                    {{#if ../r.user}}
+                        {{#if item.bookmarks.0.productPid}}
+                            <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">BOOKMARK AD</button>
+                        {{else}}
+                            <button id="bookmark_btn{{item.pid}}" onclick="bookmark({{item.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
+                        {{/if}}
                     {{/if}}
-
                 </div>
         </div>
     {{/each}}
@@ -40,8 +44,19 @@
                 location.reload(true)
             }
         })
-        let b_btn=$("bookmarkbtn")
-        b_btn.toggleClass('btn-primary btn-danger')
-        b_btn.attr('onclick','removeBookmark({{item.pid}})')
+        //console.log("bookmark_btn"+id)
+        //let b_btn=$("bookmark_btn"+id)
+        //b_btn.toggleClass('btn-primary btn-danger')
+        //b_btn.attr('onclick','removeBookmark({{item.pid}})')
+        //console.log('done')
+    }
+    function removeBookmark(id){
+        $.ajax({
+            url:`/profile/bookmarks/${id}`,
+            type:'DELETE',
+            success:function(result){
+                location.reload(true)
+            }
+        })
     }
 </script>

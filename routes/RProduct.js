@@ -59,7 +59,11 @@ router.get('/search',(r,s)=>{
     s.send("Cannot 'GET' this page . please go BACK.")
 })
 router.post('/search',(r,s)=>{
+    if(r.isAuthenticated())
+    {
+        r.body['userId']=r.user.id
 
+    }
     if(r.body.state==="")
     {
         let data={
@@ -68,6 +72,7 @@ router.post('/search',(r,s)=>{
         if(r.user){
             data['user']=r.user.name
         }
+        //console.log(data)
         s.render("home",{data:data,r:r})
 
     }
@@ -82,6 +87,7 @@ router.post('/search',(r,s)=>{
                 if(r.user){
                     data['user']=r.user.name
                 }
+                //console.log(data)
                 s.render("home",{data:data,r:r})
             }
             else
@@ -97,6 +103,7 @@ router.post('/search',(r,s)=>{
                         if(r.user){
                             data['user']=r.user.name
                         }
+
                         s.render("home",{data:data,r:r})
 
 
@@ -112,7 +119,6 @@ router.post('/search',(r,s)=>{
         }
         else
         {
-
             ctrl.search_spec_product(r.body)
                 .then((data)=>{
                     if(data.length===0)
@@ -122,6 +128,7 @@ router.post('/search',(r,s)=>{
                     if(r.user){
                         data['user']=r.user.name
                     }
+                   // console.log(data)
                     s.render("home",{data:data,r:r})
 
                 })

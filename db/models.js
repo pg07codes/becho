@@ -84,8 +84,8 @@ const product=db.define("product",{
         type:dt.STRING
     }
 })*/
-product.hasMany(ads_image)
-user.hasMany(ads_image)
+//product.hasMany(ads_image)
+//user.hasMany(ads_image)
 
 
 bookmark=db.define("bookmark",{
@@ -94,13 +94,11 @@ bookmark=db.define("bookmark",{
         primaryKey:true,
         type:dt.INTEGER
     },
-    pid:{
-        type:dt.INTEGER,
-        allowNull:false
-    }
+
 })
 
 user.hasMany(bookmark)
+product.hasMany(bookmark)
 bookmark.belongsTo(user)
 
 user.hasMany(product)

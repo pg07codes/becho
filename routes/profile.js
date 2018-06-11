@@ -93,12 +93,26 @@ router.get("/bookmarks",(r,s)=>{
 router.post("/bookmarks/:id",(r,s)=>{
     if(r.isAuthenticated())
     {
-        let stat=ctrl.adBookmark(r,s)
+        //console.log(r.user)
+        r['user'].postId=r.params.id
+       // console.log("bookmark body is "+r.body.id)
+        let stat=ctrl.adBookmark(r.user)
         s.status(200).json({
             success:"added"
         })
     }
     else
         s.redirect("/auth/signin")
+})
+router.delete("/bookmarks/:id",(r,s)=>{
+    //console.log("delelte request reached")
+    r.params['userId']=r.user.id
+    ctrl.delBookmark(r.params)
+        .then(()=>{
+            s.status(200).json({
+                success:"deleted"
+            })
+        })
+
 })
 module.exports=router

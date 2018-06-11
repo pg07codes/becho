@@ -56,7 +56,14 @@ module.exports={
             return product.findAll({
                 where:{
                     pcategory:requery.category
-                }
+                },include:[{
+                    model:bookmark,
+                    where:{
+                        userId:requery.userId
+                    },
+                    required:false                      // so that add which are not bookmarked would
+                                                        // also be their in result of search
+                }]
             })
         }
         else{
@@ -72,8 +79,8 @@ module.exports={
     search_spec_product:(requery)=> {
         if(requery.id)
         {
-            console.log("sdfhjashfk"+requery)
-            console.log(requery.id)
+            //console.log("sdfhjashfk"+requery)
+            //console.log(requery.id)
             return product.findOne({
                 where:{
                     pid:requery.id
@@ -114,9 +121,17 @@ module.exports={
             }
         })
     },
-    adBookmark:(r,s) => bookmark.create({
-    userId:r.user.userId,
-    pid:r.params.id
-})
+    adBookmark:(requery) => bookmark.create({
+    userId:requery.dataValues.id,
+    productPid:requery.postId
+}),
+    delBookmark:(requery)=>{
+        return bookmark.destroy({
+            where:{
+                productPid:requery.id,
+                userId:requery.userId
+            }
+        })
+    }
 
 }
