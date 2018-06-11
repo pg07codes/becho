@@ -6,7 +6,6 @@ const dbconfig=require('../config').DB
 const db=new Sequelize(dbconfig.NAME,dbconfig.USER,dbconfig.PASSWORD,{
     dialect:'mysql'
 })
-
 //define models here
 
 //user table here
@@ -77,7 +76,15 @@ const product=db.define("product",{
         type:dt.STRING
     }
 })
-
+//bookmark table is here////
+const ads_image=db.define('ads_image',{
+    iname:{
+        allowNull:false,
+        type:dt.STRING
+    }
+})
+product.hasMany(ads_image)
+user.hasMany(ads_image)
 user.hasMany(product)
 product.belongsTo(user)
 
@@ -88,4 +95,4 @@ db.sync({
 }).then(()=>console.log("db is synced"))
 
 
-module.exports={db,user,product}
+module.exports={db,user,product,ads_image}
