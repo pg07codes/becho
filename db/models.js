@@ -78,6 +78,21 @@ const product=db.define("product",{
     }
 })
 
+bookmark=db.define("bookmark",{
+    bid:{
+        autoIncrement:true,
+        primaryKey:true,
+        type:dt.INTEGER
+    },
+    pid:{
+        type:dt.INTEGER,
+        allowNull:false
+    }
+})
+
+user.hasMany(bookmark)
+bookmark.belongsTo(user)
+
 user.hasMany(product)
 product.belongsTo(user)
 
@@ -88,4 +103,4 @@ db.sync({
 }).then(()=>console.log("db is synced"))
 
 
-module.exports={db,user,product}
+module.exports={db,user,product,bookmark}

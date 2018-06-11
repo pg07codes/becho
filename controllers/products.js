@@ -1,5 +1,6 @@
 const product=require('../db/models').product
 const users=require('../db/models').user
+const bookmark=require('../db/models').bookmark
 
 module.exports={
     insertProduct:async(reQuery)=>{
@@ -88,5 +89,10 @@ module.exports={
                 pid:requery.id
             }
         })
-    }
+    },
+    adBookmark:(r,s) => bookmark.create({
+    userId:r.user.userId,
+    pid:r.params.id
+})
+
 }

@@ -68,7 +68,7 @@ router.post('/search',(r,s)=>{
         if(r.user){
             data['user']=r.user.name
         }
-        s.render("home",{data})
+        s.render("home",{data:data,r:r})
 
     }
     else{
@@ -82,7 +82,7 @@ router.post('/search',(r,s)=>{
                 if(r.user){
                     data['user']=r.user.name
                 }
-                s.render("home",{data})
+                s.render("home",{data:data,r:r})
             }
             else
             {
@@ -97,7 +97,7 @@ router.post('/search',(r,s)=>{
                         if(r.user){
                             data['user']=r.user.name
                         }
-                        s.render("home",{data})
+                        s.render("home",{data:data,r:r})
 
 
                     })
@@ -122,7 +122,7 @@ router.post('/search',(r,s)=>{
                     if(r.user){
                         data['user']=r.user.name
                     }
-                    s.render("home",{data})
+                    s.render("home",{data:data,r:r})
 
                 })
         }
