@@ -76,15 +76,33 @@ const product=db.define("product",{
         type:dt.STRING
     }
 })
+
 //bookmark table is here////
-const ads_image=db.define('ads_image',{
+/*const ads_image=db.define('ads_image',{
     iname:{
         allowNull:false,
         type:dt.STRING
     }
-})
+})*/
 product.hasMany(ads_image)
 user.hasMany(ads_image)
+
+
+bookmark=db.define("bookmark",{
+    bid:{
+        autoIncrement:true,
+        primaryKey:true,
+        type:dt.INTEGER
+    },
+    pid:{
+        type:dt.INTEGER,
+        allowNull:false
+    }
+})
+
+user.hasMany(bookmark)
+bookmark.belongsTo(user)
+
 user.hasMany(product)
 product.belongsTo(user)
 
@@ -94,5 +112,5 @@ db.sync({
     //force:true
 }).then(()=>console.log("db is synced"))
 
-
-module.exports={db,user,product,ads_image}
+//module.exports={db,user,product,ads_image}
+module.exports={db,user,product,bookmark}

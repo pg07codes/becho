@@ -6,7 +6,7 @@ const upload = multer({dest: 'uploads/'})
 const ctrl=require("../controllers/products")
 const Hashids=require('hashids')
 
-var hash=new Hashids()
+let hash=new Hashids()
 router.get('/',(r,s)=>{
     if(r.isAuthenticated())
     {
@@ -83,4 +83,22 @@ router.get("/chats",(r,s)=>{
         s.redirect("/auth/signin")
 })
 
+router.get("/bookmarks",(r,s)=>{
+    if(r.isAuthenticated())
+        s.render("bookmarks",{title:"Bookmarked Ads",r:r})
+    else
+        s.redirect("/auth/signin")
+})
+
+router.post("/bookmarks/:id",(r,s)=>{
+    if(r.isAuthenticated())
+    {
+        let stat=ctrl.adBookmark(r,s)
+        s.status(200).json({
+            success:"added"
+        })
+    }
+    else
+        s.redirect("/auth/signin")
+})
 module.exports=router

@@ -1,7 +1,9 @@
 const product=require('../db/models').product
 const ads_images=require('../db/models').ads_image
 const users=require('../db/models').user
-const sequelize=require('sequelize')
+//const sequelize=require('sequelize')
+const bookmark=require('../db/models').bookmark
+
 
 module.exports={
     insertProduct:async(reQuery)=>{/*
@@ -111,5 +113,10 @@ module.exports={
                 pid:requery.id
             }
         })
-    }
+    },
+    adBookmark:(r,s) => bookmark.create({
+    userId:r.user.userId,
+    pid:r.params.id
+})
+
 }

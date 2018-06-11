@@ -16,7 +16,32 @@
                             <!--<p class="card-text col-md-2"><strong>State: </strong>{{item.pstate}}</p>-->
                         </div>
                     </a>
+                    <p>{{item.user}}</p>
+                    {{#if r.user}}
+                    <button id="bookmark_btn" onclick="bookmark({{item.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
+                    {{/if}}
+
                 </div>
         </div>
     {{/each}}
+
 </div>
+
+<script>
+    function bookmark(id){
+        console.log(id)
+        $.ajax({
+            url: `/profile/bookmarks/${id}`,
+            type: 'POST',
+            data:{
+                id:id
+            },
+            success: function(result) {
+                location.reload(true)
+            }
+        })
+        let b_btn=$("bookmarkbtn")
+        b_btn.toggleClass('btn-primary btn-danger')
+        b_btn.attr('onclick','removeBookmark({{item.pid}})')
+    }
+</script>

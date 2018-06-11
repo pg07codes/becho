@@ -15,6 +15,9 @@
                     <p class="card-text col-md-2"><strong>State: </strong>{{data.specific.pstate}}</p>
                 </div>
             </a>
+                {{#if r.user}}
+            <button onclick="bookmark({{data.specific.pid}})" class="btn btn-sm btn-primary col-md-2 float-right">BOOKMARK AD</button>
+                {{/if}}
         </div>
     </div>
     <h3 style="padding:20px; color: whitesmoke"><strong>Other Ads from this user:</strong></h3>
@@ -27,4 +30,11 @@
         background: url("../../assets/images/theme.jpg");
     }
 </style>
+
+
+<script>
+    function bookmark(id){
+        console.log(id)
+    }
+</script>
 
