@@ -1,7 +1,7 @@
 
 <div class="container">
     {{#if data.warning}}
-        <div class="alert alert-danger text-center" role="alert">
+        <div class="alert alert-danger text-center mt-2" role="alert">
             {{data.warning}}
         </div>
     {{/if}}
@@ -25,7 +25,7 @@
                     <p>{{item.user}}</p>
                     {{#if ../r.user}}
                         {{#if item.bookmarks.0.productPid}}
-                            <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">Remove Bookmark </button>
+                            <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">REMOVE BOOKMARK</button>
                         {{else}}
                             <button id="bookmark_btn{{item.pid}}" onclick="bookmark({{item.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
                         {{/if}}
@@ -48,11 +48,7 @@
                 location.reload(true)
             }
         })
-        //console.log("bookmark_btn"+id)
-        //let b_btn=$("bookmark_btn"+id)
-        //b_btn.toggleClass('btn-primary btn-danger')
-        //b_btn.attr('onclick','removeBookmark({{item.pid}})')
-        //console.log('done')
+
     }
     function removeBookmark(id){
         $.ajax({
