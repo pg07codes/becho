@@ -29,7 +29,8 @@
 ```
 
 ## Collaborated and curated by:
+```
 -Pranav Gupta (pg07codes)
 -Sachin (Villan-98)
 *PULL REQUESTS ARE ALWAYS WELCOME*
-
+```
