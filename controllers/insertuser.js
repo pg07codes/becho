@@ -3,7 +3,7 @@ const user=require("../db/models").user
 module.exports={
     insertuser: function(r,s){
         if(r.body.password===r.body.cpassword){
-            if(r.body.npassword===r.body.password)
+            if(r.body.password===r.body.password)
             user.create({
                 name:r.body.name,
                 email:r.body.email,
