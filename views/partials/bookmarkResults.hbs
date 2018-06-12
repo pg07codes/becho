@@ -1,0 +1,44 @@
+<div class="container">
+    {{#if data.warning}}
+        <div class="alert alert-danger text-center mt-2" role="alert">
+            {{data.warning}}
+        </div>
+    {{/if}}
+
+    {{#each data as |item|}}
+        <div class="card mt-2 bg-light">
+            <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
+            <div class="card-body">
+
+                <div class="row" style="color: black;">
+                    <div class="col-md-4 ">
+                        <img height="120" width="120" src='/assets/upload/{{item.pimage}}'>
+                    </div>
+                    <p class="card-title col-md-2"><strong>name: </strong>{{item.pname}}</p>
+                    <p class="card-text col-md-2"><strong>about :</strong> {{item.pabout}}</p>
+                    <p class="card-text col-md-2"><strong>price: </strong>{{item.pprice}}</p>
+                    <p class="card-text col-md-2"><strong>State: </strong>{{item.pstate}}</p>
+                </div>
+                <p>{{item.user}}</p>
+                {{#if ../r.user}}
+                    {{#if item.bookmarks.0.productPid}}
+                        <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">REMOVE BOOKMARK</button>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+
+</div>
+
+<script>
+    function removeBookmark(id){
+        $.ajax({
+            url:`/profile/bookmarks/${id}`,
+            type:'DELETE',
+            success:function(result){
+                location.reload(true)
+            }
+        })
+    }
+</script>
