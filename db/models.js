@@ -99,8 +99,6 @@ bookmark=db.define("bookmark",{
 
 user.hasMany(bookmark)
 product.hasMany(bookmark)
-bookmark.belongsTo(user)
-bookmark.belongsTo(product)
 user.hasMany(product)
 product.belongsTo(user)
 

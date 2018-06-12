@@ -5,8 +5,30 @@ const fs=require('fs')
 const upload = multer({dest: 'uploads/'})
 const ctrl=require("../controllers/products")
 const Hashids=require('hashids')
-
+const User=require("../controllers/insertuser")
 let hash=new Hashids()
+
+const validateEmail=function(r,s,next){
+    console.log("in hte validator")
+    if(r.user.email===r.body.email)
+    {
+        next()
+    }
+    else{
+        User.getUser(r.body)
+            .then((data)=>{
+                console.log(data)
+                if(data===null)
+                {
+                    next()
+                }
+                else{
+                    r['warning']="An account is already registered through this email id"
+                    s.render('editDetails',{title:'Edit',r:r})
+                }
+            })
+    }
+}
 router.get('/',(r,s)=>{
     if(r.isAuthenticated())
     {
@@ -74,6 +96,49 @@ router.get("/editDetails",(r,s)=>{
    else
        s.redirect("/auth/signin")
 
+})
+router.post('/editDetails',validateEmail,(r,s)=>{
+    if(r.isAuthenticated())
+    {
+
+        if(r.body.changePassword)
+        {
+            if(r.body.oldpassword===r.user.password)
+            {
+                if(r.body.password===r.body.cpassword)
+                {
+                    User.updateUser(r)
+                        .then(()=>{
+                            s.redirect('/profile')
+                        })
+                        .catch((err)=>{s.status(404).json({err:err})})
+
+                }
+                else{
+                    r['warning']="New password and Confirm Password were not same"
+                    s.render('editDetails',{title:"EDIT",r:r})
+                }
+            }
+            else{              //here we are updating the details of user(i.e a patch request)
+
+                r['warning']="Old Password is incorrect"
+                s.render('editDetails',{title:"EDIT",r:r})
+
+            }
+        }
+        else{
+            r.body['password']=r.user.password
+            console.log(r.body.password)
+            User.updateUser(r)
+                .then(()=>{
+                    s.redirect('/profile')
+                })
+        }
+    }
+    else
+    {
+        s.redirect('/auth/signin')
+    }
 })
 
 router.get("/chats",(r,s)=>{

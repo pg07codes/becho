@@ -1,7 +1,15 @@
 {{>navbar}}
 
 <div class="container bg-light editDetails">
-    <form method="post" action="#">
+    <div class="alert alert-warning text-center" role="alert">
+        If you change email id then you will be logged out and have to signin with new email id
+    </div>
+    {{#if r.warning}}
+        <div class="alert alert-danger text-center" role="alert">
+            {{r.warning}}
+        </div>
+    {{/if}}
+    <form method="post" action="/profile/editDetails">
         <div class="row">
             <div class="col-md-4 offset-2">
                 <div class="form-group">
@@ -41,24 +49,38 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 offset-2">
+            <div class="col-md-4 offset-2">
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" name="email" value="{{r.user.email}}" class="form-control" id="email" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="password">Old Password</label>
+                    <input type="password"  name="oldpassword" class="form-control" id="oldpassword" placeholder=" Old Password">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 offset-2">
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" value="{{r.user.password}}" name="password" class="form-control" id="password" placeholder="Password">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder=" New Password">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="cpassword">Confirm Password</label>
-                    <input type="password" value="{{r.user.password}}" name="cpassword" class="form-control" id="cpassword" placeholder="Confirm Password">
+                    <input type="password"  name="cpassword" class="form-control" id="cpassword" placeholder="Confirm Password">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col offset-2">
+                <div class="form-group">
+
+                    <input type="checkbox" name="changePassword">To change the password tick the checkbox
                 </div>
             </div>
         </div>
