@@ -10,14 +10,7 @@
     </div>
 </div>
 
-    {{#if data.warning}}
-        <div class="alert alert-danger" role="alert">
-            {{data.warning}}
-        </div>
-    {{else}}
-        {{>searchResults}}
-    {{/if}}
-
+{{>searchResults}}
 <style>
     body{
         background: url("../assets/images/theme.jpg");

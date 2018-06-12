@@ -132,6 +132,26 @@ module.exports={
                 userId:requery.userId
             }
         })
+    },
+    getbookmark:async(requery)=>{
+        /*return bookmark.findAll({
+            where:{
+                userId:requery.user.id              this is the right way to get all the bookmarks but to use the
+                                                    search template as it is i have use otherway which is bad practice
+            },include:[{
+                model:product
+            }]
+        })*/
+        return product.findAll({
+            where:{
+
+            },include:[{
+                model:bookmark,
+                where:{
+                    userId:requery.user.id
+                }
+            }]
+        })
     }
 
 }

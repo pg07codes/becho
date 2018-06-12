@@ -1,6 +1,11 @@
 
 <div class="container">
-    <p >{{r.user.name}}</p>
+    {{#if data.warning}}
+        <div class="alert alert-danger text-center" role="alert">
+            {{data.warning}}
+        </div>
+    {{/if}}
+
     {{#each data as |item|}}
         <div class="card mt-2 bg-light">
             <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
@@ -20,7 +25,7 @@
                     <p>{{item.user}}</p>
                     {{#if ../r.user}}
                         {{#if item.bookmarks.0.productPid}}
-                            <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">BOOKMARK AD</button>
+                            <button id="bookmark_btn{{item.pid}}" onclick="removeBookmark({{item.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">Remove Bookmark </button>
                         {{else}}
                             <button id="bookmark_btn{{item.pid}}" onclick="bookmark({{item.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
                         {{/if}}

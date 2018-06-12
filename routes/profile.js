@@ -85,7 +85,16 @@ router.get("/chats",(r,s)=>{
 
 router.get("/bookmarks",(r,s)=>{
     if(r.isAuthenticated())
-        s.render("bookmarks",{title:"Bookmarked Ads",r:r})
+    {
+        ctrl.getbookmark(r)
+            .then((data)=>{
+                if(data.length===0)
+                {
+                    data['warning']="Sorry you have not bookmarked any add"
+                }
+                s.render("bookmarks",{title:"Bookmarked Ads",r:r,data:data})
+            })
+    }
     else
         s.redirect("/auth/signin")
 })
