@@ -23,6 +23,18 @@
     }
 </style>
 
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    let socket = io.connect();
+
+    socket.on('connection', function(data) {
+        console.log("dfjslkaffdsafdsajfdk")
+        console.log(data)
+    });
+</script>
+
+
 
 
 

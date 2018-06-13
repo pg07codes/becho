@@ -8,10 +8,10 @@ const SessionStore=require('express-session-sequelize')(expressSession.Store)
 const cookieParser=require('cookie-parser')
 const db=require('./db/models').db
 const app = express()
-
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 ////express session store//////////
-
 const sequelizeSessionStore=new SessionStore({
     db:db
 })
@@ -23,15 +23,6 @@ app.use(expressSession({
     store:sequelizeSessionStore
 }))
 
-//testing socketssssss
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-io.on('connection', function(socket) {
-    console.log(socket.id)
-    socket.emit('news', {hello: 'world'})
-})
-//till here............
-
 //serving files and parsing request body
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -42,6 +33,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/assets", express.static(path.join(__dirname, "assets")))
+
 //setting up of the view engine
 app.set("view engine","hbs")
 app.set("views","views")
@@ -68,4 +60,4 @@ server.listen(8888, () =>
     console.log("up at http://localhost:8888")
 )
 
-module.exports=app;
+module.exports={app,server,io};
