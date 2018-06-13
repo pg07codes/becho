@@ -1,7 +1,23 @@
 {{>navbar}}
-<div class="container chats">
-
+<div class="container chatsWindow">
+    <!--chat messages willl be displayed here-->
+    <div class="chatMessages"></div>
+    <!--window to type message -->
+    <div class="row">
+        <input type="email" class="form-control m-1 col-md-8"  placeholder="type message here...">
+        <input type="text" class="form-control m-1 col-md-3 " placeholder="User ID">
+        <button class="btn btn-success m-1">SEND</button>
+    </div>
 </div>
+
+<style>
+    .chatMessages{
+        height:500px;
+        width:1100px;
+        margin:10px auto;
+        border:solid lightgrey 1px;
+    }
+</style>
 
 
 
