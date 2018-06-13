@@ -131,7 +131,7 @@ message=db.define("message",{
 
 
 db.sync({
-    alter:true
+    //alter:true
     //force:true
 }).then(()=>console.log("db is synced"))
 
