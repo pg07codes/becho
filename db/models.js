@@ -99,6 +99,7 @@ bookmark=db.define("bookmark",{
 
 user.hasMany(bookmark)
 product.hasMany(bookmark)
+
 bookmark.belongsTo(user)
 bookmark.belongsTo(product)
 
@@ -106,11 +107,33 @@ bookmark.belongsTo(product)
 user.hasMany(product)
 product.belongsTo(user)
 
+//no relation like hasmany and belongsto used in message table to avoid any complexity.....
+message=db.define("message",{
+    chatId:{
+        autoIncrement:true,
+        primaryKey:true,
+        type:dt.INTEGER
+    },
+    messageBody:{
+        type:dt.STRING,
+        allowNull:false
+    },
+    senderId:{
+        type:dt.INTEGER,
+        allowNull:false
+    },
+    receiverId:{
+        type:dt.INTEGER,
+        allowNull:false
+    }
+
+})
+
 
 db.sync({
-    //alter:true
+    alter:true
     //force:true
 }).then(()=>console.log("db is synced"))
 
 //module.exports={db,user,product,ads_image}
-module.exports={db,user,product,bookmark}
+module.exports={db,user,product,bookmark,message}
