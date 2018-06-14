@@ -1,6 +1,8 @@
 const LocalStrategy = require('passport-local').Strategy
 const user = require('../db/models').user
-
+const google=require('../config').google
+const insertuser=require('../controllers/insertuser')
+const passport=require('passport')
 const localStrategy = new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField: 'email',
@@ -29,7 +31,39 @@ const localStrategy = new LocalStrategy({
             return done(err)
         })
     })
+const GoogleStrategy= require('passport-google-oauth20')
+const googleStrategy=(new GoogleStrategy({
+    clientID:google.clientId,
+    clientSecret:google.clientSecret,
+    callbackURL :"http://localhost:8888/auth/google/callback"
+},
+    function(accessToken,refreshToken,profile,done){
+        console.log(profile)
+        user.findOne({where:{googleId:profile.id}})
+            .then((user)=>{
+                if(user)
+                {
+                    done(null,user)
+                }
+                else
+                {
+                    profile['email']=profile.displayName+'@gmail.com'
+                    insertuser.insertAsGuser(profile)
+                        .then((user)=>{
+                            console.log(user)
+                            done(null,user)
+                        })
+                        .catch((err)=>{
+                            console.log(err)
+                        })
+                }
+
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    }))
 
 exports = module.exports = {
-    localStrategy
+    localStrategy,googleStrategy
 }

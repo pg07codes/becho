@@ -1,5 +1,6 @@
 let router=require("express").Router()
 let passport=require('../passport')
+
 let insertuser=require("../controllers/insertuser").insertuser
 
 router.get("/signup",(r,s)=>{
@@ -25,7 +26,10 @@ router.get("/signout",(r,s)=>{
         s.redirect('/auth/signin')
     })
 })
-
+router.get('/google',passport.authenticate('google',{scope:['profile']}))
+router.get('/google/callback',passport.authenticate('google',{failureRedirect:'/auth/signin'}),(req,res)=>{
+    res.redirect('/profile/editDetails')
+})
 router.get("/profile",(r,s)=> {
     s.redirect(`/profile`)
 })

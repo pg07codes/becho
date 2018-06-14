@@ -1,9 +1,8 @@
 const user=require("../db/models").user
-
 module.exports={
     insertuser: function(r,s){
         if(r.body.password===r.body.cpassword){
-            if(r.body.npassword===r.body.password)
+            if(r.body.password===r.body.password)
             user.create({
                 name:r.body.name,
                 email:r.body.email,
@@ -18,6 +17,13 @@ module.exports={
         else{
             s.redirect("/auth/signup?eup=true")
         }
+    },
+    insertAsGuser:(requery)=>{
+        return user.create({
+            name:requery.displayName,
+            googleId:requery.id,
+            email:requery.email
+        })
     },
     updateUser:(r)=>{
        return user.update({
@@ -38,5 +44,5 @@ module.exports={
                 email:requery.email
             }
         })
-    }
+    },
 }

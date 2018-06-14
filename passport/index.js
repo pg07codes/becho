@@ -1,22 +1,22 @@
 const passport = require('passport')
 const strategies = require('./strategies')
-const user = require('../db/models').user
+const user = require('../controllers/insertuser')
 
 
 passport.use(strategies.localStrategy)
-
+passport.use(strategies.googleStrategy)
 passport.serializeUser(function (user, done) {
 
-    console.log('serialize' + user.email)
+    console.log( user.email)
     done(null, user.email)
 })
 
 passport.deserializeUser(function(useremail, done) {
 
     console.log('deserialize' + useremail)
-    user.findOne({
-        where: {email: useremail}
-    })
+    let query={    }
+    query['email']=useremail
+    user.getUser(query)
         .then((user) => done(null, user))
         .catch((err) => done(err))
 })

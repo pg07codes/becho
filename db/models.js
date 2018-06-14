@@ -25,23 +25,27 @@ const user=db.define("user",{
         type:dt.STRING
     },
     password:{
-        allowNull:false,
+        //allowNull:false,
         type:dt.STRING
     },
     location:{
-        allowNull:false,
+        //allowNull:false,
         type:dt.STRING
     },
     state:{
-        allowNull:false,
+        //allowNull:false,
         type:dt.STRING
     },
     phn:{
-        allowNull:false,
+        //allowNull:false,
         type:dt.STRING(12)
+    },
+    googleId:{
+        type:dt.STRING
     }
 
 })
+//for the user authenticated through google////
 
 //products table here
 const product=db.define("product",{
@@ -108,7 +112,7 @@ product.belongsTo(user)
 
 
 db.sync({
-    //alter:true
+    alter:true
     //force:true
 }).then(()=>console.log("db is synced"))
 
