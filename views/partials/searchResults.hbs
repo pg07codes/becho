@@ -37,7 +37,6 @@
 
 <script>
     function bookmark(id){
-        console.log(id)
         $.ajax({
             url: `/profile/bookmarks/${id}`,
             type: 'POST',

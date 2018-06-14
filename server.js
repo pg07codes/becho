@@ -11,6 +11,23 @@ const app = express()
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
+// here is the code for sockets which is to be ported to another file-->(./socket/socket.js)....
+
+io.on('connection',(socket)=>{
+    console.log("made socket connection with " + socket.id)
+    socket.on('disconnect',()=>{
+    console.log("disconnected from "+ socket.id)
+    })
+    socket.on('msg',(msg)=>{
+        console.log(msg.socketid)
+        io.to('socket id will come here...').emit('msg',msg)
+    })
+
+})
+
+// here socket code ends....
+
+
 ////express session store//////////
 const sequelizeSessionStore=new SessionStore({
     db:db
