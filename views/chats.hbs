@@ -1,12 +1,15 @@
 {{>navbar}}
 <div class="container chatsWindow">
-    <!--chat messages willl be displayed here-->
-    <div class="chatMessages"></div>
+
+    <div class="chatMessages">
+        <!--chat messages willl be displayed here-->
+    </div>
+
     <!--window to type message -->
-    <div class="row">
-        <input type="email" class="form-control m-1 col-md-8"  placeholder="type message here...">
-        <input type="text" class="form-control m-1 col-md-3 " placeholder="User ID">
-        <button class="btn btn-success m-1">SEND</button>
+    <div class="row" >
+        <input type="text" id="msg" class="form-control m-1 col-md-8"  placeholder="type message here..." required>
+        <input type="text" id="id" class="form-control m-1 col-md-3 " placeholder="User ID" required>
+        <button id="send" class="btn btn-success m-1">SEND</button>
     </div>
 </div>
 
@@ -22,6 +25,18 @@
         border:solid lightgrey 1px;
     }
 </style>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    let socket = io();
+    let $msg=$("#msg")
+    $("#send").click((e)=>{
+        socket.emit('msg',{msg:$msg.val(),id:$("#id").val(),socketid:socket.id})
+        $msg.val('')
+    })
+</script>
+
 
 
 
