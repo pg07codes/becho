@@ -45,7 +45,7 @@ router.get("/myadvertisements",(r,s)=>{
    if(r.isAuthenticated()){
        ctrl.myAds(r,s).then((data)=>{
            let isEmpty= (data.length===0)
-           console.log(data)
+           //console.log(data)
            data.forEach(function(ele){
                //console.log(ele.dataValues.pid)
                //console.log(hash.encode(ele.dataValues.pid))
@@ -60,14 +60,14 @@ router.get("/myadvertisements",(r,s)=>{
 })
 
 router.delete("/myadvertisement/delete",(r,s)=>{
-    console.log("post id is "+r.body.id)
-    console.log("post id is "+hash.decode(r.body.id))
+    //console.log("post id is "+r.body.id)
+    //console.log("post id is "+hash.decode(r.body.id))
 
     r.body.id=hash.decode(r.body.id)
 
     ctrl.get_particular_Add(r.body)
         .then((data)=>{
-            console.log(data.dataValues.pimage)
+           // console.log(data.dataValues.pimage)
             fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{ //uploading same photo will cause an error here
                  if(err){
                      s.status(400).json({

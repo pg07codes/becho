@@ -21,7 +21,7 @@ router.get('/',(r,s)=>{
     }
 })
 router.get('/search/:id',(r,s)=>{
-    console.log(r.params.id)
+    //console.log(r.params.id)
     ctrl.get_particular_Add(r.params)
         .then((results)=>{
             //console.log(results.dataValues)
@@ -32,7 +32,7 @@ router.get('/search/:id',(r,s)=>{
                     let del_index                                       //to remove the product which is already..
                                                                         // present in the result
                     data.forEach((item,index)=>{
-                        console.log(item.dataValues.pid)
+                        //console.log(item.dataValues.pid)
                         if(item.dataValues.pid===parseInt(r.params.id)){
                             del_index=index
                             console.log("index is"+index)
@@ -136,22 +136,66 @@ router.post('/search',(r,s)=>{
 
     }
 })
-router.post('/', upload.single('photo'), (req, res) => {
+router.post('/', upload.array('photo',3), (req, res) => {
     if(!req.user)
     {
         res.redirect('./auth/signin')
     }
     else
     {
+        //console.log(req)
         let unlink=0
         const filetypes=/jpeg|jpg|gif|png/
+        console.log(req.files.length)
+        for(let i=0;i<req.files.length;i++)
+        {
 
-        console.log("mimetype is "+(req.file.mimetype))
-        const extname=filetypes.test(path.extname(req.file.originalname))           //checking the extension of the uploaded file
-        const mimetype=filetypes.test(req.file.mimetype)
+            console.log("mimetype is "+(req.files[i].mimetype))
+            const extname=filetypes.test(path.extname(req.files[i].originalname))           //checking the extension of the uploaded file
+            const mimetype=filetypes.test(req.files[i].mimetype)
+            if(mimetype)
+            {
+                fs.readFile(req.files[i].path, (err, data) => {
+                    fs.writeFile('assets/upload/'+req.files[i].originalname, data, (err) => {
+                        //console.log(err)
+                        fs.unlink(req.files[i].path, () => {})
+                    })
+                    unlink=1
+                })
+                if(unlink)
+                {
+                    res.redirect('/profile')
+                }
+                else
+                {
+                    req.body['image'+i]=req.files[i].originalname
+                }
+
+            }
+            else
+            {
+                res.send("upload right type of document")
+            }
+
+            if(i===parseInt(req.files.length)-1)
+            {
+                console.log("done")
+                req.body['userId']=req.user.id
+                console.log(req.body)
+                //req.body['number']=req.files.length
+                ctrl.insertProduct(req.body)
+                    .then(()=>{
+                        res.redirect('/profile/myadvertisements')
+                    })
+                    .catch((err)=>{
+                        res.redirect('/profile/myadvertisements')
+                    })
+            }
+
+        }
       //  console.log(extname)
         //console.log(mimetype)
-        if(mimetype )
+       /* if(mimetype )
         {
 
             fs.readFile(req.file.path, (err, data) => {
@@ -172,7 +216,7 @@ router.post('/', upload.single('photo'), (req, res) => {
                 req.body['image']=req.file.originalname
                 console.log(req.user.id)
                 req.body['userId']=req.user.id
-
+                req.body['number']=2
                 ctrl.insertProduct(req.body)
                     .then(()=>{
                         res.redirect('/profile/myadvertisements')
@@ -182,10 +226,7 @@ router.post('/', upload.single('photo'), (req, res) => {
                     })
             }
         }
-        else
-        {
-            res.send("upload right document")
-        }
+        */
     }
 })
 module.exports=router // no need to bind exports to module exports unless u are using exports object-- OK sachin sir...

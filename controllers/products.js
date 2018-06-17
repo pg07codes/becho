@@ -1,42 +1,65 @@
 const product=require('../db/models').product
 const ads_images=require('../db/models').ads_image
 const users=require('../db/models').user
-//const sequelize=require('sequelize')
+const db=require('../db/models').db
 const bookmark=require('../db/models').bookmark
 
-
 module.exports={
-    insertProduct:async(reQuery)=>{/*
-        console.log("djlkjaslkfjdaslkfjlaskjflks in the transaction")
-        return sequelize.transaction(function(t){
-            console.log("sdfjkldjaslkjfaskl")
+    insertProduct:async(reQuery)=>{
+        return db.transaction(function(t){
+
             return product.create({
                 pname:reQuery.name,
                 pprice:reQuery.price,
                 pcategory:reQuery.something,
-                pimage:reQuery.image,
                 pabout:reQuery.abt_product,
                 userId:reQuery.userId,
                 pstate:reQuery.state
+            },{transaction:t})
+                .then((product)=>{
+                   // for(let i=0;i<reQuery.number;i++)     why this loop is not working here
+                    if(reQuery.image0)
+                    {
+                        //console.log(product.pid)
+                        return ads_images.create({
+                            name:reQuery.image0,
+                            productPid:product.pid
+                        },{transaction:t}).then((ads)=>{
+                            if(reQuery.image1)
+                            {
+                                //console.log(product.pid)
+                                return ads_images.create({
+                                    name:reQuery.image1,
+                                    productPid:product.pid
+                                },{transaction:t})
+                                    .then((ads)=>{
+                                        if(reQuery.image2)
+                                        {
+                                            return ads_images.create({
+                                                name:reQuery.image2,
+                                                productPid:product.pid
+                                            },{transaction:t})
+                                                .then(()=>{
+                                                    console.log("third added")
+                                                })
+                                        }
+                                    }).catch((err)=>{
+                                        console.log(err)
+                                    })
+                            }
+                        }).catch((err)=>{
+                            console.log(err)
+                        })
+                    }
 
-            },{transaction:t}).then(function(product){
-                console.log("product are")
-                console.log(product)
-                console.log(reQuery)
-                return ads_images.create({
-                    iname:reQuery.image,
-                    userId:reQuery.userId,
-                    productId:product.pid
-                },{transaction:t})
+
             })
 
-        }).then((result)=>{
-            console.log(result)
         })
             .catch((err)=>{
                 console.log(err)
             })
-*/
+/*
         product.create({
             pname:reQuery.name,
             pprice:reQuery.price,
@@ -46,7 +69,7 @@ module.exports={
             userId:reQuery.userId,
             pstate:reQuery.state
 
-        })
+        })*/
 
     },
     searchProduct:(requery)=>{
@@ -79,8 +102,6 @@ module.exports={
     search_spec_product:(requery)=> {
         if(requery.id)
         {
-            //console.log("sdfhjashfk"+requery)
-            //console.log(requery.id)
             return product.findOne({
                 where:{
                     pid:requery.id
