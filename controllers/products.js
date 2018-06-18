@@ -140,7 +140,9 @@ module.exports={
         return product.findOne({
             where:{
                 pid:requery.id
-            }
+            },include:[{
+                model:ads_images
+            }]
         })
     },
     adBookmark:(requery) => bookmark.create({
