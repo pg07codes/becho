@@ -45,11 +45,11 @@ router.get("/myadvertisements",(r,s)=>{
    if(r.isAuthenticated()){
        ctrl.myAds(r,s).then((data)=>{
            let isEmpty= (data.length===0)
-           //console.log(data)
            data.forEach(function(ele){
                //console.log(ele.dataValues.pid)
                //console.log(hash.encode(ele.dataValues.pid))
 
+               console.log(ele.dataValues.adsImages[0])
                ele.dataValues.pid=''+(hash.encode(ele.dataValues.pid))
            })
            s.render("myAds",{title:"My Ads",data:data,r:r,isEmpty:isEmpty})

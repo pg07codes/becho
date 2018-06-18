@@ -59,17 +59,6 @@ module.exports={
             .catch((err)=>{
                 console.log(err)
             })
-/*
-        product.create({
-            pname:reQuery.name,
-            pprice:reQuery.price,
-            pcategory:reQuery.something,
-            pimage:reQuery.image,
-            pabout:reQuery.abt_product,
-            userId:reQuery.userId,
-            pstate:reQuery.state
-
-        })*/
 
     },
     searchProduct:(requery)=>{
@@ -86,6 +75,8 @@ module.exports={
                     },
                     required:false                      // so that add which are not bookmarked would
                                                         // also be their in result of search
+                },{
+                    model:ads_images,
                 }]
             })
         }
@@ -95,7 +86,9 @@ module.exports={
                 where:{
                     pcategory:requery.category,
                     pstate:requery.state
-                }
+                },include:[{
+                    model:ads_images
+                }]
             })
         }
     },
@@ -105,7 +98,9 @@ module.exports={
             return product.findOne({
                 where:{
                     pid:requery.id
-                }
+                },include:[{
+                    model:ads_images
+                }]
             })
         }
         else{
@@ -115,7 +110,9 @@ module.exports={
                         $like:'%'+requery.specific_product+'%'
 
                     }
-                }
+                },include:[{
+                    model:ads_images
+                }]
             })
         }
 
@@ -124,7 +121,11 @@ module.exports={
         return (product.findAll({
                 where:{
                     userId:r.user.id
-                }
+                },include:[
+                    {
+                        model:ads_images
+                    }
+                ]
             })
         )
     },
