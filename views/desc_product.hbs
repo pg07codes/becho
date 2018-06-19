@@ -49,9 +49,13 @@
                     <p class="card-text col-md-2"><strong>State: </strong>{{data.specific.pstate}}</p>
                 </div>
             </a>
-                {{#if r.user}}
-            <button onclick="bookmark({{data.specific.pid}})" class="btn btn-sm btn-primary col-md-2 float-right">BOOKMARK AD</button>
+            {{#if r.user}}
+                {{#if data.specific.bookmarks}}
+                    <button id="bookmark_btn{{data.specific.pid}}" onclick="removeBookmark({{data.specific.pid}})" class="btn btn-sm btn-danger col-md-2 float-right ">REMOVE BOOKMARK</button>
+                {{else}}
+                    <button id="bookmark_btn{{data.specific.pid}}" onclick="bookmark({{data.specific.pid}})" class="btn btn-sm btn-primary col-md-2 float-right ">BOOKMARK AD</button>
                 {{/if}}
+            {{/if}}
         </div>
     </div>
     <h3 style="padding:20px; color: whitesmoke"><strong>Other Ads from this user:</strong></h3>
@@ -69,7 +73,26 @@
 
 <script>
     function bookmark(id){
-        console.log(id)
+        $.ajax({
+            url: `/profile/bookmarks/${id}`,
+            type: 'POST',
+            data:{
+                id:id
+            },
+            success: function(result) {
+                location.reload(true)
+            }
+        })
+
+    }
+    function removeBookmark(id){
+        $.ajax({
+            url:`/profile/bookmarks/${id}`,
+            type:'DELETE',
+            success:function(result){
+                location.reload(true)
+            }
+        })
     }
 </script>
 

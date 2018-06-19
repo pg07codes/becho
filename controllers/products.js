@@ -152,6 +152,8 @@ module.exports={
                 pid:requery.id
             },include:[{
                 model:ads_images
+            },{
+                model:bookmark
             }]
         })
     },

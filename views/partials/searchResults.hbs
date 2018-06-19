@@ -4,18 +4,16 @@
         <div class="alert alert-danger text-center mt-2" role="alert">
             {{data.warning}}
         </div>
-    {{/if}}
-
-    {{#each data as |item|}}
-        <div class="card mt-2 bg-light">
-            <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
+    {{else}}
+        {{#each data as |item|}}
+            <div class="card mt-2 bg-light">
+                <!--if a tag is included her than item is displayed here in light color untill i specify the color balck here-->
                 <div class="card-body">
                     <a href="/product/search/{{item.pid}}">
 
                         <div class="row"style="color: black;">
                             <div class="col-md-4 ">
                                 <img height="120" width="120" src='/assets/upload/{{item.adsImages.0.name}}'>
-                                {{item.adsImages.0.name}}
                             </div>
                             <p class="card-title col-md-2"><strong>name: </strong>{{item.pname}}</p>
                             <!--<p class="card-text col-md-2"><strong>about :</strong> {{item.pabout}}</p>-->
@@ -32,8 +30,11 @@
                         {{/if}}
                     {{/if}}
                 </div>
-        </div>
-    {{/each}}
+            </div>
+        {{/each}}
+    {{/if}}
+
+
 </div>
 
 <script>
