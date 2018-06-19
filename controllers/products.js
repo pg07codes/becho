@@ -130,10 +130,20 @@ module.exports={
         )
     },
     deleteAdd:(requery)=>{
-        return product.destroy({
-            where:{
-                pid:requery.id
-            }
+        return db.transaction((t)=>{
+            return product.destroy({
+                where:{
+                    pid:requery.id
+                }
+            },{transaction:t}).then((result)=>{
+                if(result){
+                    return ads_images.destroy({
+                        where:{
+                            productPid:requery.id
+                        }
+                    },{transaction:t})
+                }
+            })
         })
     },
     get_particular_Add:(requery)=>{
@@ -174,6 +184,8 @@ module.exports={
                 where:{
                     userId:requery.user.id
                 }
+            },{
+                model:ads_images
             }]
         })
     }
