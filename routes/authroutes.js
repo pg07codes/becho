@@ -15,9 +15,15 @@ router.get("/signin",(r,s)=>{
 })
 
 router.post("/signin",passport.authenticate('local', {
-    successRedirect: `/auth/profile`,
     failureRedirect: '/auth/signin?ein=true'
-}))
+}),(req,res)=>{
+    if(req.query.sell){
+        res.redirect('/sell')
+    }
+    else{
+        res.redirect(`/auth/profile`)
+    }
+})
 
 router.get("/signout",(r,s)=>{
     r.user=null

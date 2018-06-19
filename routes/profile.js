@@ -45,11 +45,11 @@ router.get("/myadvertisements",(r,s)=>{
    if(r.isAuthenticated()){
        ctrl.myAds(r,s).then((data)=>{
            let isEmpty= (data.length===0)
-           console.log(data)
            data.forEach(function(ele){
                //console.log(ele.dataValues.pid)
                //console.log(hash.encode(ele.dataValues.pid))
 
+               console.log(ele.dataValues.adsImages[0])
                ele.dataValues.pid=''+(hash.encode(ele.dataValues.pid))
            })
            s.render("myAds",{title:"My Ads",data:data,r:r,isEmpty:isEmpty})
@@ -60,31 +60,47 @@ router.get("/myadvertisements",(r,s)=>{
 })
 
 router.delete("/myadvertisement/delete",(r,s)=>{
-    console.log("post id is "+r.body.id)
-    console.log("post id is "+hash.decode(r.body.id))
-
+    //console.log("post id is "+r.body.id)
+    //console.log("post id is "+hash.decode(r.body.id))
+    console.log("here comes the ajax request")
     r.body.id=hash.decode(r.body.id)
 
     ctrl.get_particular_Add(r.body)
         .then((data)=>{
-            console.log(data.dataValues.pimage)
-            fs.unlink('assets/upload/'+data.dataValues.pimage,(err)=>{ //uploading same photo will cause an error here
-                 if(err){
-                     s.status(400).json({
-                         err:err
-                     })
-                 }
-                 else
-                // THIS PART MAY CAUSE UNEXPECTED ERROR DURING TESTING SO IT IS BEING COMMENTED FOR NOW.....
-                {
 
-                    ctrl.deleteAdd(r.body)
-                        .then(()=>{
-                            s.status(200).json({
-                                success:"deleted"
-                            })
-                        })
-                }
+            ctrl.deleteAdd(r.body)
+                .then(()=>{
+                    s.status(200).json({
+                        success:true
+                    })
+                    fs.unlink('assets/upload/'+data.adsImages[0].name,(err)=>{
+                        if(err){
+                            console.log(err)
+                        }
+                        else{
+                            if (data.adsImages[1])
+                            {
+
+                                fs.unlink('assets/upload/'+data.adsImages[1].name,(err)=>{
+                                    if(err){
+                                        console.log(err)
+                                    }
+                                    else
+                                    {
+                                        if(data.adsImages[2])
+                                        {
+                                            fs.unlink('assets/upload/'+data.adsImages[2].name,(err)=> {
+                                                if (err) {
+                                                    console.log(err)
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    })
+
             })
         })
 

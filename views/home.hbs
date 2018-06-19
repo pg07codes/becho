@@ -18,11 +18,3 @@
     }
 </style>
 
-<script src="/socket.io/socket.io.js"></script>
-
-<script>
-    let socket = io.connect('http://localhost:8888/profile/chats');
-    socket.on('news', function(data) {
-        socket.emit('my other event', {my: 'data'});
-    });
-</script>

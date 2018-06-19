@@ -45,7 +45,7 @@ const user=db.define("user",{
     }
 
 })
-//for the user authenticated through google////
+
 
 //products table here
 const product=db.define("product",{
@@ -64,10 +64,6 @@ const product=db.define("product",{
 
     },
     pcategory:{
-        allowNull:false,
-        type:dt.STRING
-    },
-    pimage:{
         allowNull:false,
         type:dt.STRING
     },
@@ -132,12 +128,17 @@ message=db.define("message",{
     }
 
 })
-
-
+const ads_image=db.define('adsImage',{
+    name:{
+        type:dt.STRING,
+        allowNull:false
+    }
+})
+product.hasMany(ads_image)
 db.sync({
-    alter:true
+   //alter:true
     //force:true
 }).then(()=>console.log("db is synced"))
 
 //module.exports={db,user,product,ads_image}
-module.exports={db,user,product,bookmark,message}
+module.exports={db,user,product,bookmark,message,ads_image}

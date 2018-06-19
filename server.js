@@ -8,10 +8,27 @@ const SessionStore=require('express-session-sequelize')(expressSession.Store)
 const cookieParser=require('cookie-parser')
 const db=require('./db/models').db
 const app = express()
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+
+// here is the code for sockets which is to be ported to another file-->(./socket/socket.js)....
+
+io.on('connection',(socket)=>{
+    console.log("made socket connection with " + socket.id)
+    socket.on('disconnect',()=>{
+    console.log("disconnected from "+ socket.id)
+    })
+    socket.on('msg',(msg)=>{
+        console.log(msg.socketid)
+        io.to('socket id will come here...').emit('msg',msg)
+    })
+
+})
+
+// here socket code ends....
 
 
 ////express session store//////////
-
 const sequelizeSessionStore=new SessionStore({
     db:db
 })
@@ -23,15 +40,6 @@ app.use(expressSession({
     store:sequelizeSessionStore
 }))
 
-//testing socketssssss
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-io.on('connection', function(socket) {
-    console.log(socket.id)
-    socket.emit('news', {hello: 'world'})
-})
-//till here............
-
 //serving files and parsing request body
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -42,6 +50,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use("/assets", express.static(path.join(__dirname, "assets")))
+
 //setting up of the view engine
 app.set("view engine","hbs")
 app.set("views","views")
@@ -68,4 +77,4 @@ server.listen(8888, () =>
     console.log("up at http://localhost:8888")
 )
 
-module.exports=app;
+module.exports={app,server,io};
