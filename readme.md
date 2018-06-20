@@ -2,15 +2,16 @@
 *It is an online platform for buying and selling second-hand items*
 
 ## What it does
-- SignUp for a new user
+- SignUp for a new user(using google or by email)
 - Post advertisesments for everyone to see
 - Search advertisements By location and category OR by name
 - Bookmark advertisements you want to review later
+- chat with other users( in progress)
 
 ## Technologies Used
 ```
 - Used nodejs for creating server and routing
-- Used Passport.js for user authentication
+- Used Passport.js for user authentication(local strategy + google strategy)
 - Used Handlebars.js for rendering templates 
 - Used Sequelize as ORM (SQL)
 - Used mysql as the database
@@ -23,7 +24,7 @@
 ```
 - clone this repository
 - Run `npm install`
-- create your own config.json file for using Database
+- create your own config.json file for using Database and google authentication
 - Run `npm start` 
 
 ```
