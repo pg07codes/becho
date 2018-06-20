@@ -5,8 +5,8 @@
         <div class="card-body">
             <a href="/product/search/{{data.specific.pid}}">
 
-                <div class="row"style="color: black;">
-                    <div class="col-5">
+                <div class="row justify-content-center mb-4" style="color: black;">
+                    <div class="col-md-3">
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -40,10 +40,11 @@
                         </div>
                     </div>
 
-                    <p class="card-title col-md-2"><strong>name: </strong>{{data.specific.pname}}</p>
+
 
                 </div>
                 <div class="row " style="color: black">
+                    <p class="card-title col-md-2"><strong>name: </strong>{{data.specific.pname}}</p>
                     <p class="card-text col-md-5"><strong>about :</strong> {{data.specific.pabout}}</p>
                     <p class="card-text col-md-2"><strong>price: </strong>{{data.specific.pprice}}</p>
                     <p class="card-text col-md-2"><strong>State: </strong>{{data.specific.pstate}}</p>
@@ -65,7 +66,7 @@
 
 <style>
     body{
-        background: url("../assets/images/theme.jpg");
+        background: url("/assets/images/theme.jpg");
         background-size: cover;
     }
 </style>
