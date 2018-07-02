@@ -10,6 +10,7 @@ const db=require('./db/models').db
 const app = express()
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+const PORT=process.env.PORT || 8888
 
 // here is the code for sockets which is to be ported to another file-->(./socket/socket.js)....
 
@@ -73,8 +74,8 @@ app.use("/product",require('./routes/RProduct'))
 app.use("/profile",require('./routes/profile'))
 
 //server starts listening
-server.listen(8888, () =>
-    console.log("up at http://localhost:8888")
+server.listen(PORT, () =>
+    console.log("up at http://localhost:"+PORT)
 )
 
 module.exports={app,server,io};
