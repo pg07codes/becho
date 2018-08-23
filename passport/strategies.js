@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const user = require('../db/models').user
-const google=require('../config').google
+// const google=require('../config').google
 const insertuser=require('../controllers/insertuser')
 const passport=require('passport')
 const localStrategy = new LocalStrategy({
@@ -33,9 +33,9 @@ const localStrategy = new LocalStrategy({
     })
 const GoogleStrategy= require('passport-google-oauth20')
 const googleStrategy=(new GoogleStrategy({
-    clientID:google.clientId,
-    clientSecret:google.clientSecret,
-    callbackURL :"http://localhost:8888/auth/google/callback"
+    clientID:process.env.GOOGLE_CLIENT_ID,
+    clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL :"https://becho.herokuapp.com/auth/google/callback"
 },
     function(accessToken,refreshToken,profile,done){
         console.log(profile)

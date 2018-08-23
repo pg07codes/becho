@@ -1,8 +1,7 @@
 const Sequelize=require('sequelize')
 const dt=Sequelize.DataTypes
 
-const dbconfig=require('../config').DB
-
+// const dbconfig=require('../config').DB
 // const db=new Sequelize(dbconfig.NAME,dbconfig.USER,dbconfig.PASSWORD,{
 //     dialect:'mysql'
 // })
