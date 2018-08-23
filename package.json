@@ -18,6 +18,7 @@
   "homepage": "https://github.com/pg07codes/becho#readme",
   "dependencies": {
     "cookie-parser": "^1.4.3",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-hbs": "^1.0.4",
     "express-session": "^1.15.6",
@@ -28,6 +29,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
+    "pg": "^7.4.3",
     "sequelize": "^4.37.8",
     "socket.io": "^2.1.1"
   }
