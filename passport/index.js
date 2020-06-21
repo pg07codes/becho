@@ -4,7 +4,7 @@ const user = require('../controllers/insertuser')
 
 
 passport.use(strategies.localStrategy)
-passport.use(strategies.googleStrategy)
+// passport.use(strategies.googleStrategy)
 passport.serializeUser(function (user, done) {
 
     console.log( user.email)

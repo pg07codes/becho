@@ -1,0 +1,7 @@
+{
+    "DB":{
+        "NAME":"name of db",
+        "USER":"pg",
+        "PASSWORD":"pg"
+    }
+}

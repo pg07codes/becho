@@ -1,12 +1,13 @@
 const Sequelize=require('sequelize')
 const dt=Sequelize.DataTypes
 
-// const dbconfig=require('../config').DB
-// const db=new Sequelize(dbconfig.NAME,dbconfig.USER,dbconfig.PASSWORD,{
-//     dialect:'mysql'
-// })
+const dbconfig=require('../config').DB
+const db=new Sequelize(dbconfig.NAME,dbconfig.USER,dbconfig.PASSWORD,{
+    dialect:'mysql'
+})
 
-const db = new Sequelize(process.env.DATABASE_URL);
+// const db = new Sequelize(process.env.DATABASE_URL);
+
 //define models here
 
 //user table here
